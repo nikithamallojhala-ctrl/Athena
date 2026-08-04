@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="ATHENA OS is a privacy-first athlete health, nursing communication, and track & field performance platform co-created equally by Nikitha Mallojhala and Shriyan Avadhanula." />
+  <title>ATHENA OS — Athlete Health Intelligence for Every Event</title>
+  <style>
+:root{--bg:#06101d;--bg2:#0a1728;--panel:rgba(13,29,48,.82);--panel-solid:#0d1d30;--text:#f3f8ff;--muted:#9eb0c5;--line:rgba(255,255,255,.1);--accent:#43f6c3;--accent2:#62a7ff;--violet:#a987ff;--danger:#ff667a;--warn:#ffc857;--good:#43f6c3;--shadow:0 28px 80px rgba(0,0,0,.34);--radius:24px;--max:1240px}
+body.light{--bg:#f4f8fb;--bg2:#e8f0f7;--panel:rgba(255,255,255,.86);--panel-solid:#fff;--text:#102238;--muted:#52677e;--line:rgba(20,48,76,.12);--shadow:0 24px 60px rgba(35,69,100,.15)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 0%,rgba(98,167,255,.16),transparent 30%),radial-gradient(circle at 90% 12%,rgba(67,246,195,.12),transparent 28%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;min-height:100vh}.aurora{position:fixed;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 15%,rgba(169,135,255,.045),transparent 55%);z-index:-1}.skip-link{position:absolute;left:-999px;top:8px;background:var(--text);color:var(--bg);padding:10px 14px;z-index:999}.skip-link:focus{left:8px}.shell{width:min(var(--max),calc(100% - 40px));margin:auto}.section-space{padding:110px 0}.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px max(20px,calc((100vw - var(--max))/2));background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(67,246,195,.55);border-radius:14px;background:linear-gradient(145deg,rgba(67,246,195,.18),rgba(98,167,255,.12));font-weight:900;color:var(--accent);box-shadow:inset 0 0 25px rgba(67,246,195,.08)}.brand strong{display:block;letter-spacing:.16em;font-size:.92rem}.brand em{font-style:normal;color:var(--accent)}.brand small{display:block;color:var(--muted);font-size:.65rem}.topbar nav{display:flex;gap:24px}.topbar nav a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:700}.topbar nav a:hover{color:var(--text)}.top-actions{display:flex;gap:8px}.icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);cursor:pointer}.hero{min-height:780px;display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;padding:110px 0 80px}.eyebrow{font-size:.73rem;letter-spacing:.18em;font-weight:900;color:var(--accent);margin:0 0 14px}.hero h1,.section-heading h2{font-size:clamp(3rem,6vw,6.5rem);line-height:.94;letter-spacing:-.065em;margin:0}.hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2),var(--violet));-webkit-background-clip:text;color:transparent}.hero-text{font-size:1.15rem;color:var(--muted);max-width:680px;margin:26px 0}.hero-actions,.button-row,.about-actions{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:14px;border:1px solid transparent;text-decoration:none;font-weight:850;font-size:.88rem;cursor:pointer;transition:.2s}.button.primary{background:linear-gradient(135deg,var(--accent),#7fffdc);color:#052018;box-shadow:0 12px 34px rgba(67,246,195,.18)}.button.secondary{background:linear-gradient(135deg,var(--accent2),#8abfff);color:#071a2e}.button.ghost{background:transparent;border-color:var(--line);color:var(--text)}.button:hover{transform:translateY(-2px)}.button.full{width:100%}.trust-row{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.78rem;margin-top:24px}.hero-system{position:relative;min-height:520px;display:grid;place-items:center}.system-orbit{position:absolute;border:1px solid rgba(98,167,255,.2);border-radius:50%}.orbit-one{width:480px;height:480px;animation:spin 26s linear infinite}.orbit-two{width:350px;height:350px;border-style:dashed;animation:spin 18s linear infinite reverse}.core-card{width:min(390px,90%);padding:26px;position:relative;z-index:2;text-align:center}.glass,.panel{background:linear-gradient(160deg,color-mix(in srgb,var(--panel-solid) 88%,transparent),color-mix(in srgb,var(--panel-solid) 64%,transparent));border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(18px)}.core-card{border-radius:32px}.core-top,.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.core-top{font-size:.7rem;font-weight:850;letter-spacing:.12em;color:var(--muted)}.live-dot{color:var(--accent);font-size:.65rem}.hero-ring{margin:24px auto}.score-ring{--score:72;width:156px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}.score-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--panel-solid)}.score-ring div{position:relative;z-index:1;text-align:center}.score-ring strong{display:block;font-size:2.6rem;line-height:1}.score-ring small{font-size:.62rem;letter-spacing:.14em;color:var(--accent);font-weight:900}.core-card h3{margin:18px 0 6px}.core-card p{margin:0;color:var(--muted)}.signal-pills{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:18px}.signal-pills span,.pill{border:1px solid var(--line);background:rgba(255,255,255,.045);padding:6px 10px;border-radius:999px;font-size:.67rem;font-weight:850;color:var(--muted)}.pill.accent{color:var(--accent);border-color:rgba(67,246,195,.3)}.danger-pill{color:var(--danger)}.float-chip{position:absolute;z-index:4;background:var(--panel-solid);border:1px solid var(--line);border-radius:16px;padding:12px 15px;box-shadow:var(--shadow)}.float-chip small{display:block;color:var(--muted);font-size:.58rem;letter-spacing:.13em}.float-chip b{font-size:.86rem}.chip-a{left:0;top:90px}.chip-b{right:0;top:130px}.chip-c{left:25px;bottom:80px}.stats-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:27px max(20px,calc((100vw - var(--max))/2));background:rgba(255,255,255,.02)}.stats-strip div{text-align:center;border-right:1px solid var(--line)}.stats-strip div:last-child{border:0}.stats-strip strong{display:block;font-size:1.65rem}.stats-strip span{font-size:.76rem;color:var(--muted)}.section-heading{max-width:900px;margin-bottom:46px}.section-heading h2{font-size:clamp(2.7rem,5vw,5.3rem)}.section-heading>p:last-child{color:var(--muted);font-size:1.05rem;max-width:720px}.panel{border-radius:var(--radius);padding:25px}.panel-head{margin-bottom:20px}.panel-head small,.event-intro small,.roadmap-grid small{color:var(--accent);font-size:.65rem;font-weight:900;letter-spacing:.14em}.panel-head h3{margin:4px 0 0;font-size:1.35rem}.command-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.profile-panel{grid-column:1/-1}.readiness-panel{grid-row:span 2}.trend-panel{grid-column:2}.form-grid,.input-grid{display:grid;gap:14px}.three-col{grid-template-columns:repeat(3,1fr)}.two-col{grid-template-columns:repeat(2,1fr)}.input-grid{grid-template-columns:repeat(2,1fr);margin:22px 0}.form-stack{display:grid;gap:14px}label,legend{font-size:.74rem;color:var(--muted);font-weight:750}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04);color:var(--text);padding:12px 13px;margin-top:7px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(98,167,255,.1)}input[type=range]{padding:0;accent-color:var(--accent)}input[type=checkbox]{width:auto;margin:0;accent-color:var(--accent)}option{background:var(--panel-solid)}output{float:right;color:var(--text)}.input-suffix{position:relative}.input-suffix span{position:absolute;right:12px;bottom:12px;color:var(--muted);font-size:.74rem}.hint{display:block;color:var(--muted);font-size:.66rem;margin-top:5px}.readiness-hero{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}.lead-insight{font-size:1.02rem;color:var(--muted);margin:0 0 14px}.best-fit{border-left:3px solid var(--accent);padding-left:12px}.best-fit small{display:block;font-size:.6rem;color:var(--muted);letter-spacing:.12em}.best-fit b{font-size:1.08rem}.factor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.factor{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(255,255,255,.025)}.factor small{display:block;color:var(--muted);font-size:.62rem}.factor b{font-size:.86rem}.factor.negative b{color:var(--warn)}.recommendations{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.recommendations span,.adjustment-list span{font-size:.72rem;padding:8px 10px;border-radius:10px;background:rgba(67,246,195,.08);border:1px solid rgba(67,246,195,.16)}.compatibility-meter{height:12px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden;margin:24px 0 16px}.compatibility-meter div{height:100%;width:76%;background:linear-gradient(90deg,var(--danger),var(--warn),var(--accent));border-radius:inherit;transition:.35s}.compatibility-result{display:flex;align-items:center;gap:18px}.compatibility-result>strong{font-size:2.3rem}.compatibility-result b{display:block}.compatibility-result p{margin:3px 0;color:var(--muted);font-size:.83rem}.adjustment-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.text-btn{border:0;background:none;color:var(--accent2);font-weight:800;cursor:pointer}.empty-state{color:var(--muted);text-align:center;padding:30px}.event-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.event-tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:12px;padding:11px 16px;font-weight:850;cursor:pointer}.event-tab.active{color:#04271d;background:var(--accent);border-color:var(--accent)}.event-stage{border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.018);overflow:hidden}.event-pane{display:none;padding:30px}.event-pane.active{display:block}.event-intro{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:25px}.event-intro h3{font-size:2rem;margin:4px 0}.event-intro p{color:var(--muted);max-width:700px}.event-glyph{font-size:4rem;color:var(--accent);opacity:.7}.tool-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:18px}.panel.inset{box-shadow:none;background:rgba(255,255,255,.025)}.blueprint{min-height:260px}.blueprint-title{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:15px}.blueprint-title strong{font-size:2.4rem}.phase-list{display:grid;gap:10px}.phase{display:grid;grid-template-columns:110px 1fr auto;gap:13px;align-items:center;border:1px solid var(--line);padding:12px;border-radius:14px}.phase-bar{height:8px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.phase-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.phase small{color:var(--muted)}.attempt-series{display:flex;gap:9px;flex-wrap:wrap;min-height:75px}.attempt{min-width:74px;padding:12px;border:1px solid var(--line);border-radius:14px;text-align:center}.attempt.foul{color:var(--danger);text-decoration:line-through}.attempt small{display:block;color:var(--muted)}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.metric-grid>div{border:1px solid var(--line);border-radius:14px;padding:13px}.metric-grid small{display:block;color:var(--muted);font-size:.62rem}.metric-grid b{font-size:1.1rem}.check-label{display:flex;align-items:center;gap:9px}.relay-controls{display:grid;gap:16px}.relay-athletes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.relay-athlete{border:1px solid var(--line);padding:12px;border-radius:14px}.relay-athlete h4{margin:0 0 8px}.mini-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.mini-fields input{padding:8px}.relay-results{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.relay-card{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:18px}.relay-card:first-child{border-color:rgba(67,246,195,.5);box-shadow:0 0 40px rgba(67,246,195,.08)}.relay-card .rank{color:var(--accent);font-weight:900}.relay-order{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.relay-order span{background:rgba(255,255,255,.05);padding:6px 8px;border-radius:8px;font-size:.72rem}.health-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.muted{color:var(--muted)}.health-result{margin-top:20px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:15px;padding:16px}.health-result.warn{border-left-color:var(--warn)}.health-result.danger{border-left-color:var(--danger);background:rgba(255,102,122,.06)}.zone-track{display:grid;grid-template-columns:1fr 2fr 1.5fr;height:18px;border-radius:99px;overflow:hidden;margin:22px 0 12px}.zone-track span:nth-child(1){background:#62a7ff}.zone-track span:nth-child(2){background:#43f6c3}.zone-track span:nth-child(3){background:#ffc857}.three-metrics{grid-template-columns:repeat(3,1fr)}.medical-note{margin-top:18px;font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:13px;padding:13px}.sleep-week{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.sleep-day{text-align:center}.sleep-day input{text-align:center;padding:9px}.sleep-day small{font-size:.6rem}.concern-tabs{display:flex;gap:7px;flex-wrap:wrap}.concern{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:9px;cursor:pointer}.concern.active{background:var(--danger);color:white;border-color:var(--danger)}.concern-content{margin-top:20px}.concern-content ul{padding-left:20px;color:var(--muted)}.urgent{border-radius:13px;padding:13px;background:rgba(255,102,122,.1);border:1px solid rgba(255,102,122,.25)}.handoff-grid,.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.symptom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}fieldset{border:1px solid var(--line);border-radius:15px;padding:14px}.symptom-option{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:9px;border-radius:10px}.handoff-output{position:sticky;top:95px;align-self:start}.handoff-note{border:1px solid var(--line);border-radius:16px;padding:18px;min-height:420px;background:rgba(255,255,255,.025)}.handoff-note h4{color:var(--accent);margin:16px 0 4px}.handoff-note h4:first-child{margin-top:0}.urgent-banner{background:var(--danger);color:white;padding:14px;border-radius:13px;margin-bottom:13px;font-weight:900}.hidden{display:none}.fine-print{font-size:.72rem;color:var(--muted)}.protocol-card{border:1px solid var(--line);border-radius:15px;padding:15px}.protocol-card h4{margin:0 0 4px}.observation-form{display:grid;grid-template-columns:1fr 1fr 1.6fr auto;gap:8px;margin:14px 0}.observation-form input{margin:0}.observation-list{display:grid;gap:7px;max-height:220px;overflow:auto}.observation{display:grid;grid-template-columns:100px 90px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0;font-size:.78rem}.about-card{display:grid;grid-template-columns:1.3fr .7fr;gap:38px;border:1px solid var(--line);border-radius:32px;padding:45px;background:linear-gradient(145deg,rgba(98,167,255,.08),rgba(67,246,195,.04));box-shadow:var(--shadow)}.about-copy h2{font-size:3.3rem;line-height:1;margin:0 0 12px}.about-copy h3{color:var(--accent);font-size:1.05rem}.about-copy p{color:var(--muted)}.founder-quote{font-size:1.15rem!important;color:var(--text)!important;border-left:3px solid var(--accent);padding-left:15px}.founder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:center}.founder-grid div{border:1px solid var(--line);border-radius:18px;padding:18px}.founder-grid strong{display:block;font-size:1.8rem}.founder-grid span{font-size:.72rem;color:var(--muted)}.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.roadmap-grid p{color:var(--muted)}.evidence{border-top:1px solid var(--line);padding:60px 0}.evidence p{color:var(--muted);max-width:900px}.source-links{display:flex;gap:10px;flex-wrap:wrap}.source-links a{color:var(--accent2);font-size:.8rem}footer{display:flex;justify-content:space-between;gap:20px;padding:35px max(20px,calc((100vw - var(--max))/2));border-top:1px solid var(--line);color:var(--muted)}footer strong{color:var(--text);margin-right:12px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,30px);opacity:0;background:var(--text);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:800;z-index:200;transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}.reveal{opacity:1;transform:none}.reveal.visible{opacity:1;transform:none}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:1050px){.topbar nav{display:none}.hero{grid-template-columns:1fr;min-height:auto}.hero-system{min-height:500px}.command-grid,.health-grid,.handoff-grid,.research-grid,.about-card{grid-template-columns:1fr}.trend-panel{grid-column:auto}.readiness-panel{grid-row:auto}.tool-grid{grid-template-columns:1fr}.relay-athletes{grid-template-columns:repeat(2,1fr)}.handoff-output{position:static}.about-card{padding:28px}}
+@media(max-width:720px){.shell{width:min(100% - 24px,var(--max))}.section-space{padding:75px 0}.hero{padding-top:75px}.hero h1{font-size:3.35rem}.hero-system{min-height:430px}.orbit-one{width:360px;height:360px}.orbit-two{width:260px;height:260px}.float-chip{display:none}.stats-strip{grid-template-columns:repeat(2,1fr);gap:18px}.stats-strip div{border:0}.three-col,.two-col,.input-grid,.factor-grid,.health-grid,.metric-grid,.three-metrics,.founder-grid,.roadmap-grid{grid-template-columns:1fr}.command-grid{display:block}.command-grid>.panel{margin-bottom:16px}.readiness-hero{grid-template-columns:1fr;text-align:center}.score-ring{margin:auto}.relay-athletes,.relay-results{grid-template-columns:1fr}.event-pane{padding:18px}.event-intro h3{font-size:1.55rem}.event-glyph{display:none}.phase{grid-template-columns:80px 1fr}.phase strong{grid-column:2}.observation-form{grid-template-columns:1fr}.observation{grid-template-columns:80px 70px 1fr}.observation button{grid-column:3}.about-copy h2{font-size:2.4rem}.symptom-grid{grid-template-columns:1fr}footer{display:block}.topbar{padding:10px 12px}.brand small{display:none}}
+@media print{.topbar,.hero,.stats-strip,#command,#eventlab,#health,#research,#about,.evidence,footer,.button,.text-btn{display:none!important}body{background:white;color:black}.handoff-output{position:static}.handoff-output,.handoff-note{border:0;box-shadow:none;background:white;color:black}.handoff-note p{color:black}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+
+/* Equal co-founder recognition */
+.founders-section{position:relative}.founders-header{max-width:950px;margin:0 auto 38px;text-align:center}.founders-header h2{font-size:clamp(3rem,6vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:0 0 20px}.founders-header>p:last-of-type{color:var(--muted);font-size:1.08rem}.equity-badge{display:inline-grid;grid-template-columns:auto auto auto auto auto;gap:10px;align-items:center;margin-top:20px;padding:12px 18px;border:1px solid rgba(67,246,195,.35);border-radius:999px;background:linear-gradient(135deg,rgba(67,246,195,.09),rgba(98,167,255,.08))}.equity-badge span{font-size:1.2rem;font-weight:950;color:var(--accent)}.equity-badge b{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}.equity-badge i{font-style:normal;color:var(--muted)}.founder-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.founder-profile{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:34px;background:linear-gradient(155deg,color-mix(in srgb,var(--panel-solid) 92%,transparent),color-mix(in srgb,var(--panel-solid) 68%,transparent));box-shadow:var(--shadow)}.founder-profile:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--violet))}.founder-number{position:absolute;right:22px;top:15px;font-size:4.8rem;font-weight:950;line-height:1;color:rgba(255,255,255,.045)}body.light .founder-number{color:rgba(0,0,0,.05)}.founder-role{display:inline-block;padding:7px 10px;border:1px solid rgba(67,246,195,.28);border-radius:999px;color:var(--accent);font-size:.62rem;letter-spacing:.12em;font-weight:950}.founder-profile h3{font-size:2.15rem;letter-spacing:-.035em;margin:19px 0 5px}.founder-tagline{font-weight:800;color:var(--text)!important}.founder-profile p{color:var(--muted)}.founder-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:22px 0}.founder-facts span{border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--muted);font-size:.7rem}.founder-facts b{display:block;color:var(--text);font-size:1.05rem}.founder-links{display:flex;gap:9px;flex-wrap:wrap}.partnership-manifesto{margin-top:20px;padding:30px;border:1px solid var(--line);border-radius:26px;text-align:center;background:linear-gradient(120deg,rgba(169,135,255,.08),rgba(67,246,195,.05))}.partnership-manifesto small{color:var(--accent);font-weight:950;letter-spacing:.15em}.partnership-manifesto blockquote{max-width:900px;margin:16px auto 20px;font-size:1.25rem;line-height:1.5;font-weight:750}.shared-contact{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.78rem;margin-bottom:20px}.shared-contact a,footer a{color:var(--accent2);text-decoration:none}.shared-contact a:hover,footer a:hover{text-decoration:underline}
+@media(max-width:900px){.founder-cards{grid-template-columns:1fr}.founder-profile{padding:28px}}
+@media(max-width:560px){.equity-badge{grid-template-columns:auto auto auto}.equity-badge i{display:none}.founder-facts{grid-template-columns:1fr}.founder-profile h3{font-size:1.8rem}.partnership-manifesto{padding:22px}.partnership-manifesto blockquote{font-size:1.02rem}}
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ATHENA OS home">
+      <span class="brand-mark">A</span>
+      <span><strong>ATHENA <em>OS</em></strong><small>Athlete Health Intelligence</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#command">Command</a>
+      <a href="#eventlab">Event Lab</a>
+      <a href="#health">Health Hub</a>
+      <a href="#handoff">Nurse Handoff</a>
+      <a href="#research">Research</a>
+      <a href="#about">Founders</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="voiceToggle" type="button" aria-label="Toggle voice summaries" title="Voice summaries">◖</button>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">TRACK & FIELD × HEALTH × NURSING × DATA</p>
+        <h1>Every event.<br><span>One athlete intelligence system.</span></h1>
+        <p class="hero-text">ATHENA OS adapts to sprinters, hurdlers, distance runners, jumpers, throwers, relay teams, and multi-event athletes—turning daily wellness, training data, safety knowledge, and clear communication into smarter decisions.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#command">Launch command center</a>
+          <a class="button ghost" href="#eventlab">Explore every event</a>
+        </div>
+        <div class="trust-row"><span>● Works offline</span><span>◎ On-device data</span><span>✚ Nurse-ready communication</span></div>
+      </div>
+      <div class="hero-system reveal" aria-label="ATHENA athlete digital twin preview">
+        <div class="system-orbit orbit-one"></div><div class="system-orbit orbit-two"></div>
+        <div class="core-card glass">
+          <div class="core-top"><span>ATHLETE DIGITAL TWIN</span><b class="live-dot">LOCAL</b></div>
+          <div class="score-ring hero-ring" style="--score:84"><div><strong>84</strong><small>READY</small></div></div>
+          <h3>400m + Long Jump profile</h3>
+          <p>Best fit today: technique + controlled speed.</p>
+          <div class="signal-pills"><span>Sleep 8.6h</span><span>Soreness 2/10</span><span>Heat low</span></div>
+        </div>
+        <div class="float-chip chip-a"><small>EVENT GENOME</small><b>18 disciplines</b></div>
+        <div class="float-chip chip-b"><small>NURSE HANDOFF</small><b>SBAR ready</b></div>
+        <div class="float-chip chip-c"><small>RELAY OPTIMIZER</small><b>24 orders</b></div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div><strong>18+</strong><span>track & field events</span></div>
+      <div><strong>24</strong><span>relay orders evaluated</span></div>
+      <div><strong>0</strong><span>health records uploaded</span></div>
+      <div><strong>1</strong><span>student-built mission</span></div>
+    </section>
+
+    <section id="command" class="shell section-space">
+      <div class="section-heading reveal">
+        <p class="eyebrow">ATHLETE COMMAND CENTER</p>
+        <h2>A local “digital twin” that<br>explains, not just scores.</h2>
+        <p>ATHENA combines your event demands with today’s wellness signals. It does not diagnose or clear athletes to participate.</p>
+      </div>
+
+      <div class="command-grid">
+        <article class="panel profile-panel reveal">
+          <div class="panel-head"><div><small>EVENT GENOME</small><h3>Build your athlete profile</h3></div><span class="pill">Local only</span></div>
+          <div class="form-grid three-col">
+            <label>Name<input id="athleteName" placeholder="Athlete name"></label>
+            <label>Age<input id="athleteAge" type="number" min="13" max="80" value="15"></label>
+            <label>Level<select id="athleteLevel"><option>High school</option><option>Middle school</option><option>Club</option><option>College</option><option>Recreational</option></select></label>
+            <label>Primary event<select id="primaryEvent" class="event-select"></select></label>
+            <label>Secondary event<select id="secondaryEvent" class="event-select"></select></label>
+            <label>Baseline resting pulse<div class="input-suffix"><input id="baselineHr" type="number" min="35" max="130" value="68"><span>bpm</span></div></label>
+          </div>
+          <button id="saveProfile" class="button secondary" type="button">Save athlete profile</button>
+        </article>
+
+        <article class="panel readiness-panel reveal">
+          <div class="panel-head"><div><small>READINESS ENGINE</small><h3>Daily athlete check-in</h3></div><span id="eventBias" class="pill accent">Sprint profile</span></div>
+          <div class="readiness-hero">
+            <div class="score-ring" id="readinessRing" style="--score:78"><div><strong id="readinessScore">78</strong><small id="readinessLabel">BALANCED</small></div></div>
+            <div><p id="readinessSummary" class="lead-insight">A normal session may fit, with extra attention to hydration and warm-up quality.</p><div id="bestFit" class="best-fit"><small>BEST-FIT SESSION</small><b>Controlled quality</b></div></div>
+          </div>
+          <div class="input-grid">
+            <label>Sleep <output id="sleepOut">8.0 h</output><input id="sleep" type="range" min="4" max="11" step="0.1" value="8"></label>
+            <label>Energy <output id="energyOut">7 / 10</output><input id="energy" type="range" min="0" max="10" value="7"></label>
+            <label>Soreness <output id="sorenessOut">3 / 10</output><input id="soreness" type="range" min="0" max="10" value="3"></label>
+            <label>Stress <output id="stressOut">3 / 10</output><input id="stress" type="range" min="0" max="10" value="3"></label>
+            <label>Hydration<select id="hydration"><option value="100">Well hydrated</option><option value="78">Mostly hydrated</option><option value="50">Behind today</option><option value="25">Very low</option></select></label>
+            <label>Resting pulse<div class="input-suffix"><input id="restingHr" type="number" min="35" max="160" value="68"><span>bpm</span></div></label>
+            <label>Yesterday’s effort <output id="loadOut">5 / 10</output><input id="load" type="range" min="0" max="10" value="5"></label>
+            <label>Health flags<select id="healthFlag"><option value="none">No major concerns</option><option value="pain">New or worsening pain</option><option value="illness">Feeling ill / feverish</option><option value="breathing">Breathing concern</option><option value="head">Head impact / concussion concern</option></select></label>
+          </div>
+          <div class="factor-grid" id="factorGrid"></div>
+          <div class="recommendations" id="recommendations"></div>
+          <div class="button-row"><button class="button primary" id="saveCheckin" type="button">Save check-in</button><button class="button ghost" id="speakSummary" type="button">Hear summary</button></div>
+        </article>
+
+        <article class="panel session-panel reveal">
+          <div class="panel-head"><div><small>SESSION COMPATIBILITY</small><h3>Pressure-test today’s plan</h3></div><span class="pill">Explainable</span></div>
+          <div class="form-grid two-col">
+            <label>Planned session<select id="plannedSession"><option value="speed">Speed / acceleration</option><option value="speedend">Speed endurance</option><option value="tempo">Tempo / threshold</option><option value="distance">Long aerobic work</option><option value="hurdles">Hurdle rhythm</option><option value="jumps">Jump technique</option><option value="throws">Throw technique</option><option value="strength">Strength training</option><option value="recovery">Recovery / mobility</option></select></label>
+            <label>Intensity <output id="intensityOut">7 / 10</output><input id="sessionIntensity" type="range" min="1" max="10" value="7"></label>
+            <label>Duration<input id="sessionDuration" type="number" min="10" max="240" value="75"><span class="hint">minutes</span></label>
+            <label>Outdoor temperature<input id="sessionTemp" type="number" min="20" max="120" value="78"><span class="hint">°F</span></label>
+          </div>
+          <div class="compatibility-meter"><div id="compatibilityFill"></div></div>
+          <div class="compatibility-result"><strong id="compatibilityScore">76%</strong><div><b id="compatibilityLabel">Compatible with adjustments</b><p id="compatibilityText">Keep the quality work, but reduce total volume if fatigue rises.</p></div></div>
+          <div id="sessionAdjustments" class="adjustment-list"></div>
+        </article>
+
+        <article class="panel trend-panel reveal">
+          <div class="panel-head"><div><small>RECOVERY SIGNAL</small><h3>Readiness history</h3></div><button id="clearHistory" class="text-btn" type="button">Reset</button></div>
+          <canvas id="trendChart" width="760" height="280" aria-label="Readiness history chart"></canvas>
+          <p id="chartEmpty" class="empty-state">Save daily check-ins to reveal your pattern.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="eventlab" class="shell section-space">
+      <div class="section-heading reveal">
+        <p class="eyebrow">UNIVERSAL EVENT LAB</p>
+        <h2>Not a running app.<br>A track & field system.</h2>
+        <p>Choose your discipline. ATHENA changes the questions, calculations, and performance language.</p>
+      </div>
+      <div class="event-tabs reveal" role="tablist" aria-label="Event tools">
+        <button class="event-tab active" data-tab="sprints" type="button">Sprints</button>
+        <button class="event-tab" data-tab="hurdles" type="button">Hurdles</button>
+        <button class="event-tab" data-tab="distance" type="button">Distance</button>
+        <button class="event-tab" data-tab="jumps" type="button">Jumps</button>
+        <button class="event-tab" data-tab="throws" type="button">Throws</button>
+        <button class="event-tab" data-tab="relays" type="button">Relays</button>
+      </div>
+
+      <div class="event-stage reveal">
+        <article class="event-pane active" id="pane-sprints">
+          <div class="event-intro"><div><small>SPRINT ARCHITECT</small><h3>Turn a goal time into a race blueprint</h3><p>Build planning splits for acceleration, transition, max velocity, and finish. These are coaching estimates—not guarantees.</p></div><div class="event-glyph">↗</div></div>
+          <div class="tool-grid">
+            <div class="panel inset form-stack">
+              <label>Event<select id="sprintEvent"><option value="60">60m</option><option value="100" selected>100m</option><option value="200">200m</option><option value="300">300m</option><option value="400">400m</option></select></label>
+              <label>Goal time<input id="sprintGoal" type="number" step="0.01" value="13.20"><span class="hint">seconds</span></label>
+              <label>Race strength<select id="sprintStrength"><option value="balanced">Balanced</option><option value="start">Strong starter</option><option value="finish">Strong finisher</option></select></label>
+              <button class="button primary" id="buildSprintPlan" type="button">Build race blueprint</button>
+            </div>
+            <div class="panel inset"><div id="sprintBlueprint" class="blueprint"></div></div>
+          </div>
+        </article>
+
+        <article class="event-pane" id="pane-hurdles">
+          <div class="event-intro"><div><small>RHYTHM ENGINE</small><h3>Plan hurdle rhythm without losing the race</h3><p>Estimate average hurdle-to-hurdle rhythm and compare race models across short and long hurdle events.</p></div><div class="event-glyph">⌁</div></div>
+          <div class="tool-grid">
+            <div class="panel inset form-stack">
+              <label>Event<select id="hurdleEvent"><option value="100h">100m hurdles</option><option value="110h">110m hurdles</option><option value="300h">300m hurdles</option><option value="400h">400m hurdles</option></select></label>
+              <label>Goal time<input id="hurdleGoal" type="number" step="0.01" value="18.50"></label>
+              <label>Start + finish allowance<input id="hurdleAllowance" type="number" step="0.1" value="4.5"><span class="hint">seconds combined</span></label>
+              <button class="button primary" id="buildHurdlePlan" type="button">Calculate rhythm</button>
+            </div>
+            <div class="panel inset"><div id="hurdleBlueprint" class="blueprint"></div></div>
+          </div>
+        </article>
+
+        <article class="event-pane" id="pane-distance">
+          <div class="event-intro"><div><small>PACE MATRIX</small><h3>See every lap before the gun</h3><p>Translate a goal time into 200m, 400m, 800m, and kilometer planning splits.</p></div><div class="event-glyph">∞</div></div>
+          <div class="tool-grid">
+            <div class="panel inset form-stack">
+              <label>Event<select id="distanceEvent"><option value="800">800m</option><option value="1600" selected>1600m</option><option value="3200">3200m</option><option value="5000">5K</option></select></label>
+              <label>Goal time<input id="distanceGoal" value="5:45.00" placeholder="5:45.00"></label>
+              <label>Strategy<select id="distanceStrategy"><option value="even">Even pace</option><option value="negative">Negative split</option><option value="aggressive">Aggressive opening</option></select></label>
+              <button class="button primary" id="buildPacePlan" type="button">Build pace matrix</button>
+            </div>
+            <div class="panel inset"><div id="distanceBlueprint" class="blueprint"></div></div>
+          </div>
+        </article>
+
+        <article class="event-pane" id="pane-jumps">
+          <div class="event-intro"><div><small>FLIGHT LOG</small><h3>Track a whole series, not one highlight</h3><p>Record attempts, fouls, best mark, average legal mark, and consistency.</p></div><div class="event-glyph">⌃</div></div>
+          <div class="tool-grid">
+            <div class="panel inset form-stack">
+              <label>Event<select id="jumpEvent"><option>Long Jump</option><option>Triple Jump</option><option>High Jump</option><option>Pole Vault</option></select></label>
+              <label>Attempt mark<input id="jumpMark" type="number" step="0.01" placeholder="e.g. 4.72"><span class="hint">meters</span></label>
+              <label class="check-label"><input id="jumpFoul" type="checkbox"> Mark as foul / miss</label>
+              <button class="button primary" id="addJump" type="button">Add attempt</button>
+              <button class="button ghost" id="resetJumps" type="button">Reset series</button>
+            </div>
+            <div class="panel inset"><div id="jumpSeries" class="attempt-series"></div><div id="jumpStats" class="metric-grid"></div></div>
+          </div>
+        </article>
+
+        <article class="event-pane" id="pane-throws">
+          <div class="event-intro"><div><small>THROW VAULT</small><h3>Measure consistency under pressure</h3><p>Log complete competition series for shot put, discus, javelin, or hammer.</p></div><div class="event-glyph">◉</div></div>
+          <div class="tool-grid">
+            <div class="panel inset form-stack">
+              <label>Event<select id="throwEvent"><option>Shot Put</option><option>Discus</option><option>Javelin</option><option>Hammer</option></select></label>
+              <label>Attempt mark<input id="throwMark" type="number" step="0.01" placeholder="e.g. 10.40"><span class="hint">meters</span></label>
+              <label class="check-label"><input id="throwFoul" type="checkbox"> Mark as foul</label>
+              <button class="button primary" id="addThrow" type="button">Add attempt</button>
+              <button class="button ghost" id="resetThrows" type="button">Reset series</button>
+            </div>
+            <div class="panel inset"><div id="throwSeries" class="attempt-series"></div><div id="throwStats" class="metric-grid"></div></div>
+          </div>
+        </article>
+
+        <article class="event-pane" id="pane-relays">
+          <div class="event-intro"><div><small>RELAY INTELLIGENCE</small><h3>Evaluate every possible order</h3><p>ATHENA scores all 24 lineups using athlete times plus curve, exchange, endurance, and pressure ratings.</p></div><div class="event-glyph">⇄</div></div>
+          <div class="relay-controls panel inset">
+            <label>Relay<select id="relayEvent"><option value="4x100">4×100m</option><option value="4x200">4×200m</option><option value="4x400" selected>4×400m</option><option value="4x800">4×800m</option></select></label>
+            <div class="relay-athletes" id="relayAthletes"></div>
+            <button class="button primary" id="optimizeRelay" type="button">Evaluate 24 relay orders</button>
+          </div>
+          <div class="relay-results" id="relayResults"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="health" class="shell section-space">
+      <div class="section-heading reveal">
+        <p class="eyebrow">ATHLETE HEALTH HUB</p>
+        <h2>Performance tools that know<br>when health comes first.</h2>
+        <p>Educational planning support based on public health guidance—not medical advice, diagnosis, or clearance.</p>
+      </div>
+      <div class="health-grid">
+        <article class="panel reveal">
+          <div class="panel-head"><div><small>HEAT AWARENESS</small><h3>Practice risk planner</h3></div><span class="pill accent">Not WBGT</span></div>
+          <p class="muted">A conservative awareness tool using temperature, humidity, session intensity, duration, and acclimatization. Follow your school’s official policy and athletic staff.</p>
+          <div class="form-grid two-col">
+            <label>Temperature<input id="heatTemp" type="number" value="86"><span class="hint">°F</span></label>
+            <label>Humidity<input id="heatHumidity" type="number" value="60"><span class="hint">%</span></label>
+            <label>Duration<input id="heatDuration" type="number" value="90"><span class="hint">minutes</span></label>
+            <label>Intensity<select id="heatIntensity"><option value="1">Easy</option><option value="2" selected>Moderate</option><option value="3">Hard</option><option value="4">Maximum / competition</option></select></label>
+            <label>Acclimatized?<select id="heatAcclimated"><option value="1">Yes</option><option value="0">No / unsure</option></select></label>
+            <label>Event demand<select id="heatEventDemand"><option value="1">Technical / low continuous load</option><option value="2">Sprint / power</option><option value="3">Distance / continuous</option></select></label>
+          </div>
+          <div id="heatResult" class="health-result"></div>
+        </article>
+
+        <article class="panel reveal">
+          <div class="panel-head"><div><small>CARDIO EDUCATION</small><h3>Heart-rate zone explorer</h3></div><span class="pill">General guide</span></div>
+          <label>Age<input id="heartAge" type="number" min="13" max="80" value="15"></label>
+          <div class="zone-track"><span></span><span></span><span></span></div>
+          <div class="metric-grid three-metrics">
+            <div><small>Estimated max</small><b id="maxHr">205 bpm</b></div>
+            <div><small>Moderate</small><b id="moderateHr">103–144</b></div>
+            <div><small>Vigorous</small><b id="vigorousHr">144–174</b></div>
+          </div>
+          <div class="medical-note">The American Heart Association describes these as general estimates; individual responses vary. Stop and tell an adult if exercise causes chest pain, fainting, severe breathing difficulty, or other alarming symptoms.</div>
+        </article>
+
+        <article class="panel reveal">
+          <div class="panel-head"><div><small>SLEEP BANK</small><h3>Seven-night recovery pattern</h3></div><button id="resetSleep" class="text-btn" type="button">Reset</button></div>
+          <p class="muted">NIH guidance says teens ages 13–18 generally need 8–10 hours of sleep per day.</p>
+          <div id="sleepWeek" class="sleep-week"></div>
+          <div id="sleepSummary" class="health-result"></div>
+        </article>
+
+        <article class="panel reveal emergency-panel">
+          <div class="panel-head"><div><small>SAFETY SIGNALS</small><h3>When to stop and get help</h3></div><span class="pill danger-pill">Health first</span></div>
+          <div class="concern-tabs">
+            <button class="concern active" data-concern="heat" type="button">Heat</button>
+            <button class="concern" data-concern="head" type="button">Head impact</button>
+            <button class="concern" data-concern="breathing" type="button">Breathing</button>
+            <button class="concern" data-concern="cardiac" type="button">Chest / fainting</button>
+            <button class="concern" data-concern="injury" type="button">Serious injury</button>
+          </div>
+          <div id="concernContent" class="concern-content"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="handoff" class="shell section-space">
+      <div class="section-heading reveal">
+        <p class="eyebrow">NURSING COMMUNICATION</p>
+        <h2>Turn “I don’t feel right”<br>into a clear handoff.</h2>
+        <p>ATHENA structures what happened into an SBAR-style note for a nurse, athletic trainer, coach, parent, or clinician. It never replaces urgent care.</p>
+      </div>
+      <div class="handoff-grid">
+        <form id="handoffForm" class="panel reveal form-stack">
+          <div class="panel-head"><div><small>SBAR BUILDER</small><h3>Athlete-to-care handoff</h3></div><span class="pill accent">Nursing inspired</span></div>
+          <div class="form-grid two-col">
+            <label>Athlete name<input id="handoffName" placeholder="Athlete name"></label>
+            <label>Event / activity<input id="handoffEvent" placeholder="400m practice"></label>
+            <label>What happened?<select id="handoffSituation"><option>Gradual symptoms during practice</option><option>Sudden symptoms during practice</option><option>Collision or fall</option><option>Head impact</option><option>Muscle or joint injury</option><option>Symptoms after practice</option></select></label>
+            <label>When did it begin?<input id="handoffOnset" placeholder="Around 4:20 PM / after rep 3"></label>
+            <label>Pain or discomfort <output id="painOut">3 / 10</output><input id="handoffPain" type="range" min="0" max="10" value="3"></label>
+            <label>Current status<select id="handoffStatus"><option>Alert and breathing normally</option><option>Dizzy or unsteady</option><option>Confused or acting unusually</option><option>Breathing is difficult</option><option>Fainted / lost consciousness</option><option>Repeated vomiting</option></select></label>
+          </div>
+          <fieldset><legend>Symptoms to report</legend><div class="symptom-grid" id="symptomGrid"></div></fieldset>
+          <label>Relevant background<textarea id="handoffBackground" rows="3" placeholder="Recent illness, medications, allergies, prior injury, hydration, heat exposure..."></textarea></label>
+          <label>What have you already done?<textarea id="handoffActions" rows="3" placeholder="Stopped activity, moved to shade, told coach, used prescribed inhaler per action plan..."></textarea></label>
+          <label>What help is needed?<select id="handoffRequest"><option>Assessment by school nurse / athletic trainer</option><option>Parent or guardian contact</option><option>Medical evaluation</option><option>Emergency response</option><option>Guidance before returning to activity</option></select></label>
+          <button class="button primary" type="submit">Generate clear handoff</button>
+        </form>
+        <article class="panel reveal handoff-output">
+          <div class="panel-head"><div><small>SHAREABLE SUMMARY</small><h3>SBAR-style note</h3></div><button id="printHandoff" class="text-btn" type="button">Print</button></div>
+          <div id="urgentBanner" class="urgent-banner hidden"></div>
+          <div id="handoffNote" class="handoff-note"><p>Complete the form to generate a structured communication note.</p></div>
+          <button id="copyHandoff" class="button secondary full" type="button">Copy note</button>
+          <p class="fine-print">Do not delay 911 or emergency care to complete this form.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="research" class="shell section-space">
+      <div class="section-heading reveal">
+        <p class="eyebrow">ATHLETE RESEARCH STUDIO</p>
+        <h2>Train like an athlete.<br>Think like a researcher.</h2>
+        <p>Create a safe, simple N-of-1 project, track observations, and export your own dataset for a science fair, HOSA presentation, or portfolio.</p>
+      </div>
+      <div class="research-grid">
+        <form id="researchForm" class="panel reveal form-stack">
+          <div class="panel-head"><div><small>STUDY DESIGN</small><h3>Create a personal experiment</h3></div><span class="pill">No diagnosis</span></div>
+          <label>Research question<input id="researchQuestion" placeholder="Does a consistent warm-up improve my first 200m split?"></label>
+          <div class="form-grid two-col">
+            <label>Independent variable<input id="researchIV" placeholder="Warm-up routine"></label>
+            <label>Outcome metric<input id="researchMetric" placeholder="First 200m split"></label>
+            <label>Study length<input id="researchDays" type="number" min="3" max="90" value="14"><span class="hint">days</span></label>
+            <label>Safety boundary<select id="researchSafety"><option>Stop for pain, illness, or red flags</option><option>Coach / parent approves session changes</option><option>No change to prescribed treatment</option></select></label>
+          </div>
+          <label>Plan<textarea id="researchPlan" rows="4" placeholder="What will stay constant? What will change? How will you record the result?"></textarea></label>
+          <button class="button primary" type="submit">Save research protocol</button>
+        </form>
+        <article class="panel reveal">
+          <div class="panel-head"><div><small>OBSERVATION LOG</small><h3>Collect clean data</h3></div><button id="exportResearch" class="text-btn" type="button">Export CSV</button></div>
+          <div id="protocolCard" class="protocol-card empty-state">Create a protocol to begin.</div>
+          <form id="observationForm" class="observation-form">
+            <input id="observationDate" type="date" required>
+            <input id="observationValue" type="number" step="0.01" placeholder="Metric value" required>
+            <input id="observationNote" placeholder="Context / conditions">
+            <button class="button secondary" type="submit">Add</button>
+          </form>
+          <div id="observationList" class="observation-list"></div>
+          <canvas id="researchChart" width="760" height="250" aria-label="Research observations chart"></canvas>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="shell section-space founders-section">
+      <div class="founders-header reveal">
+        <p class="eyebrow">BUILT 50/50 · ONE SHARED VISION</p>
+        <h2>Meet the co-founders</h2>
+        <p>ATHENA OS was conceived, designed, and built as an equal collaboration between <strong>Nikitha Mallojhala</strong> and <strong>Shriyan Avadhanula</strong>. Product strategy, research, interface design, technical development, testing, and iteration are credited jointly.</p>
+        <div class="equity-badge"><span>50%</span><b>Nikitha</b><i>+</i><span>50%</span><b>Shriyan</b></div>
+      </div>
+
+      <div class="founder-cards reveal">
+        <article class="founder-profile">
+          <div class="founder-number">01</div>
+          <div class="founder-role">CO-FOUNDER &amp; CO-LEAD DEVELOPER</div>
+          <h3>Nikitha Mallojhala</h3>
+          <p class="founder-tagline">Student athlete, competitive dancer, health-tech builder, and community volunteer.</p>
+          <p>Nikitha is an incoming sophomore at Montgomery High School with a 3.9 unweighted GPA. She has trained in dance for seven years, competed for 2.5 years, and participated in track for three years as a 4×400 relay medalist. Her involvement in HOSA, the American Red Cross, Sensation, religious volunteering, and H.E.N. INC. shaped her interest in preventive health, athlete communication, and technology that helps people act earlier.</p>
+          <p>Before ATHENA, she created <strong>AAINA</strong>, a browser-based AI dance mirror that uses real-time pose tracking to help dancers practice technique privately. Her lived experience across dance and track helped define ATHENA’s athlete-first workflow and its focus on the full range of track and field events.</p>
+          <div class="founder-facts">
+            <span><b>3.9</b> Unweighted GPA</span>
+            <span><b>7 yrs</b> Dance</span>
+            <span><b>3 yrs</b> Track</span>
+            <span><b>4×400</b> Medalist</span>
+          </div>
+          <div class="founder-links">
+            <a class="button primary" href="mailto:nikitha.mallojhala@gmail.com">Email Nikitha</a>
+            <a class="button ghost" href="https://nikithamallojhala-ctrl.github.io/AAINA/" target="_blank" rel="noreferrer">View AAINA</a>
+          </div>
+        </article>
+
+        <article class="founder-profile">
+          <div class="founder-number">02</div>
+          <div class="founder-role">CO-FOUNDER &amp; CO-LEAD DEVELOPER</div>
+          <h3>Shriyan Avadhanula</h3>
+          <p class="founder-tagline">AI and cybersecurity builder, finance researcher, entrepreneur, and competitive athlete.</p>
+          <p>Shriyan is a tenth-grade IB MYP student at Henrico High School with a 3.92 unweighted GPA. His work spans artificial intelligence, cybersecurity, finance, entrepreneurship, nonprofit leadership, and competitive athletics. He has built DataShadow, an AI-powered personal data platform with a patent filing, and conducts original cybersecurity risk research.</p>
+          <p>As a state-level competitive pickleball athlete who independently secured eight brand sponsorships, Shriyan brings firsthand experience in performance, discipline, business development, privacy, and responsible data systems. That combination helped shape ATHENA’s privacy-first architecture, strategic product model, and research-ready approach.</p>
+          <div class="founder-facts">
+            <span><b>3.92</b> Unweighted GPA</span>
+            <span><b>IB MYP</b> Student</span>
+            <span><b>8</b> Sponsorships</span>
+            <span><b>40+</b> Service hours</span>
+          </div>
+          <div class="founder-links">
+            <a class="button primary" href="mailto:avadhanula.shriyan@gmail.com">Email Shriyan</a>
+            <a class="button ghost" href="https://sribyju.github.io/" target="_blank" rel="noreferrer">View Scholark</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="partnership-manifesto reveal">
+        <small>THE PARTNERSHIP</small>
+        <blockquote>“ATHENA is not one founder’s idea with another person added later. It is a true 50/50 build—two perspectives combining athletics, health, AI, privacy, research, and service into one athlete-centered system.”</blockquote>
+        <div class="shared-contact">
+          <span>Project contacts</span>
+          <a href="mailto:nikitha.mallojhala@gmail.com">nikitha.mallojhala@gmail.com</a>
+          <i>•</i>
+          <a href="mailto:avadhanula.shriyan@gmail.com">avadhanula.shriyan@gmail.com</a>
+        </div>
+        <button id="copyResume" class="button secondary" type="button">Copy shared resume bullets</button>
+      </div>
+
+      <div class="roadmap-grid reveal">
+        <article class="panel"><small>PHASE 01 · SHIPPED</small><h3>Local athlete intelligence</h3><p>Event-specific readiness, session compatibility, universal event tools, SBAR handoffs, and research exports.</p></article>
+        <article class="panel"><small>PHASE 02 · NEXT</small><h3>Coach and nurse portals</h3><p>Permission-based dashboards, athlete-selected sharing, and school-specific emergency action plans.</p></article>
+        <article class="panel"><small>PHASE 03 · RESEARCH</small><h3>Validated decision support</h3><p>Partner with qualified professionals to test usability, bias, safety, and whether the tools improve communication.</p></article>
+      </div>
+    </section>
+
+    <section class="evidence shell">
+      <h2>Evidence & safety</h2>
+      <p>ATHENA is a student-built educational prototype. It is not a medical device, diagnosis system, injury predictor, or substitute for a healthcare professional. Safety content references public guidance from the CDC, American Heart Association, and NIH/NHLBI.</p>
+      <div class="source-links">
+        <a href="https://www.cdc.gov/heat-health/risk-factors/heat-and-athletes.html" target="_blank" rel="noreferrer">CDC: Heat and Athletes</a>
+        <a href="https://www.cdc.gov/heads-up/signs-symptoms/index.html" target="_blank" rel="noreferrer">CDC HEADS UP</a>
+        <a href="https://www.heart.org/en/healthy-living/exercise-and-physical-activity/fitness-basics/target-heart-rates" target="_blank" rel="noreferrer">AHA Target Heart Rates</a>
+        <a href="https://www.nhlbi.nih.gov/health/sleep/how-much-sleep" target="_blank" rel="noreferrer">NIH/NHLBI Sleep</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div><strong>ATHENA OS</strong><span>Co-created equally by Nikitha Mallojhala &amp; Shriyan Avadhanula</span></div><p><a href="mailto:nikitha.mallojhala@gmail.com">Nikitha</a> · <a href="mailto:avadhanula.shriyan@gmail.com">Shriyan</a> · Private by design.</p></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const memoryStore={};
+const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??memoryStore[k]??d}catch{return memoryStore[k]??d}},set:(k,v)=>{memoryStore[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+let currentReadiness=78, voiceOn=false;
+const events=['55m','60m','100m','200m','300m','400m','800m','1600m','3200m','5K','100m Hurdles','110m Hurdles','300m Hurdles','400m Hurdles','Long Jump','Triple Jump','High Jump','Pole Vault','Shot Put','Discus','Javelin','Multi-Event'];
+const groups={sprint:['55m','60m','100m','200m','300m','400m'],endurance:['800m','1600m','3200m','5K'],hurdle:['100m Hurdles','110m Hurdles','300m Hurdles','400m Hurdles'],jump:['Long Jump','Triple Jump','High Jump','Pole Vault'],throw:['Shot Put','Discus','Javelin'],multi:['Multi-Event']};
+const getGroup=e=>Object.entries(groups).find(([,a])=>a.includes(e))?.[0]||'sprint';
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function speak(text){if(!('speechSynthesis'in window))return toast('Voice summaries are not supported in this browser');speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.98;u.pitch=1.02;speechSynthesis.speak(u)}
+
+// Profile
+$$('.event-select').forEach((s,i)=>{s.innerHTML=events.map(e=>`<option ${i===0&&e==='400m'?'selected':''}>${e}</option>`).join('')});
+function loadProfile(){const p=store.get('athena_os_profile',null);if(!p)return;Object.entries(p).forEach(([k,v])=>{const el=$('#'+k);if(el)el.value=v});updateReadiness()}
+$('#saveProfile').onclick=()=>{const p={athleteName:$('#athleteName').value,athleteAge:$('#athleteAge').value,athleteLevel:$('#athleteLevel').value,primaryEvent:$('#primaryEvent').value,secondaryEvent:$('#secondaryEvent').value,baselineHr:$('#baselineHr').value};store.set('athena_os_profile',p);$('#handoffName').value=p.athleteName;toast('Athlete profile saved on this device');updateReadiness()};
+
+// Readiness
+const rids=['sleep','energy','soreness','stress','hydration','restingHr','load','healthFlag','primaryEvent','baselineHr'];
+rids.forEach(id=>$('#'+id)?.addEventListener('input',updateReadiness));
+function updateReadiness(){
+ const sleep=+$('#sleep').value, energy=+$('#energy').value, sore=+$('#soreness').value, stress=+$('#stress').value, hyd=+$('#hydration').value, hr=+$('#restingHr').value, load=+$('#load').value, flag=$('#healthFlag').value, base=+$('#baselineHr').value||68, event=$('#primaryEvent').value, group=getGroup(event);
+ $('#sleepOut').value=`${sleep.toFixed(1)} h`;$('#energyOut').value=`${energy} / 10`;$('#sorenessOut').value=`${sore} / 10`;$('#stressOut').value=`${stress} / 10`;$('#loadOut').value=`${load} / 10`;$('#eventBias').textContent=`${group[0].toUpperCase()+group.slice(1)} profile`;
+ const weights={sprint:{sleep:.19,energy:.22,sore:.22,stress:.1,hyd:.12,hr:.08,load:.07},endurance:{sleep:.21,energy:.17,sore:.13,stress:.09,hyd:.2,hr:.12,load:.08},hurdle:{sleep:.18,energy:.2,sore:.23,stress:.1,hyd:.11,hr:.08,load:.1},jump:{sleep:.17,energy:.2,sore:.25,stress:.1,hyd:.1,hr:.06,load:.12},throw:{sleep:.16,energy:.2,sore:.25,stress:.12,hyd:.1,hr:.05,load:.12},multi:{sleep:.2,energy:.18,sore:.2,stress:.1,hyd:.13,hr:.09,load:.1}}[group];
+ const signals={sleep:Math.min(100,Math.max(0,(sleep-4)/4*100)),energy:energy*10,sore:(10-sore)*10,stress:(10-stress)*10,hyd,hr:Math.max(0,100-Math.max(0,hr-base)*7),load:Math.max(0,100-Math.max(0,load-4)*10)};
+ let score=Math.round(Object.keys(weights).reduce((a,k)=>a+signals[k]*weights[k],0));
+ if(flag==='pain')score=Math.min(score,46);if(flag==='illness')score=Math.min(score,35);if(flag==='breathing'||flag==='head')score=Math.min(score,15);
+ score=Math.max(5,Math.min(100,score));currentReadiness=score;
+ let label='RECOVER',summary='Several signals suggest stopping hard training and speaking with a trusted adult, coach, nurse, athletic trainer, or clinician.',fit='Recovery / professional check-in';
+ if(score>=85){label='PRIMED';summary=`Your ${event} profile and today’s signals support a high-quality session, while still requiring a full warm-up and symptom awareness.`;fit=group==='endurance'?'Quality aerobic or race-specific work':group==='throw'?'Technical throws + strength quality':group==='jump'?'Approach rhythm + high-quality jumps':group==='hurdle'?'Rhythm + controlled speed':'Speed / technical quality'}
+ else if(score>=68){label='READY';summary='A normal session may fit. Preserve quality, watch the first few reps, and adjust volume if your body feels worse than the numbers suggest.';fit='Controlled quality'}
+ else if(score>=50){label='CAUTION';summary='Your signals are mixed. Favor technique, lower volume, or lower intensity and address the biggest limiting factor first.';fit='Technique / reduced load'}
+ else if(score>=25){label='RECOVER';summary='Today’s data does not support a hard session. Choose recovery and tell a trusted adult about pain, illness, or worsening symptoms.';fit='Recovery / reassessment'}
+ if(flag==='breathing'||flag==='head')summary='Stop activity and tell an adult immediately. A breathing concern or possible concussion needs prompt evaluation; emergency warning signs require 911.';
+ $('#readinessScore').textContent=score;$('#readinessLabel').textContent=label;$('#readinessRing').style.setProperty('--score',score);$('#readinessSummary').textContent=summary;$('#bestFit b').textContent=fit;
+ const factors=[['Sleep',Math.round(signals.sleep),sleep>=8?`${sleep.toFixed(1)}h supports recovery`:`${sleep.toFixed(1)}h is below the teen 8h floor`],['Energy',signals.energy,`${energy}/10 self-report`],['Muscle state',signals.sore,`${sore}/10 soreness`],['Hydration',signals.hyd,hyd>=78?'On track':'Needs attention']];
+ $('#factorGrid').innerHTML=factors.map(([n,v,d])=>`<div class="factor ${v<60?'negative':''}"><small>${n} · ${v}%</small><b>${d}</b></div>`).join('');
+ const rec=[];if(sleep<8)rec.push('Protect 8–10 hours tonight');if(energy<5)rec.push('Lower session demand');if(sore>=6)rec.push('Report pain or unusual soreness');if(stress>=7)rec.push('Simplify today’s plan');if(hyd<70)rec.push('Rehydrate before hard work');if(hr-base>=8)rec.push('Resting pulse is above baseline');if(load>=8)rec.push('Avoid stacking maximal days');if(flag!=='none')rec.push('Health flag overrides performance goals');if(!rec.length)rec.push('Maintain normal recovery habits');
+ $('#recommendations').innerHTML=rec.map(x=>`<span>${x}</span>`).join('');updateCompatibility();return {score,label,summary,fit,event,group}
+}
+$('#saveCheckin').onclick=()=>{const r=updateReadiness(),d=store.get('athena_os_checkins',[]);d.push({date:new Date().toISOString(),label:new Date().toLocaleDateString(undefined,{weekday:'short'}),score:r.score,event:r.event});store.set('athena_os_checkins',d.slice(-60));drawTrend();toast('Check-in saved locally')};
+$('#speakSummary').onclick=()=>{const r=updateReadiness();speak(`ATHENA readiness ${r.score}, ${r.label}. ${r.summary} Best fit session: ${r.fit}.`)};
+$('#voiceToggle').onclick=()=>{voiceOn=!voiceOn;$('#voiceToggle').textContent=voiceOn?'◉':'◖';toast(`Voice summaries ${voiceOn?'on':'off'}`)};
+
+// session compatibility
+['plannedSession','sessionIntensity','sessionDuration','sessionTemp'].forEach(id=>$('#'+id).addEventListener('input',updateCompatibility));
+function updateCompatibility(){if(!$('#sessionIntensity'))return;const inten=+$('#sessionIntensity').value,dur=+$('#sessionDuration').value,temp=+$('#sessionTemp').value,type=$('#plannedSession').value;$('#intensityOut').value=`${inten} / 10`;let score=currentReadiness-(inten-5)*4-Math.max(0,dur-90)*.12-Math.max(0,temp-82)*.8;const group=getGroup($('#primaryEvent').value);const match={sprint:['speed','speedend','strength'],endurance:['tempo','distance','recovery'],hurdle:['hurdles','speed','strength'],jump:['jumps','speed','strength'],throw:['throws','strength'],multi:['speed','hurdles','jumps','throws','strength']}[group];if(match.includes(type))score+=6;if(type==='recovery')score+=16;if($('#healthFlag').value!=='none'&&type!=='recovery')score-=25;score=Math.max(5,Math.min(98,Math.round(score)));$('#compatibilityScore').textContent=`${score}%`;$('#compatibilityFill').style.width=`${score}%`;let label='Not a good fit',text='Choose recovery and discuss concerning symptoms with a trusted adult.';if(score>=82){label='Strong fit';text='The planned session aligns with today’s signals. Keep quality high and stop if symptoms change.'}else if(score>=64){label='Compatible with adjustments';text='Keep the main goal, but reduce total volume or extend recovery if quality falls.'}else if(score>=45){label='Low compatibility';text='Convert the session toward technique, lower intensity, or shorter duration.'}$('#compatibilityLabel').textContent=label;$('#compatibilityText').textContent=text;const a=[];if(inten>=8&&currentReadiness<75)a.push('Cap maximal reps');if(dur>90)a.push('Shorten total duration');if(temp>=85)a.push('Add heat precautions');if(!match.includes(type)&&type!=='recovery')a.push(`Not primary for ${group} profile`);if($('#healthFlag').value!=='none')a.push('Health concern comes before session');if(!a.length)a.push('No major adjustment identified');$('#sessionAdjustments').innerHTML=a.map(x=>`<span>${x}</span>`).join('')}
+
+// Charts
+function drawLine(canvas,data,colorVar='--accent'){const c=$(canvas),ctx=c.getContext('2d'),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);if(!data.length)return false;const vals=data.map(d=>d.value),min=Math.min(...vals),max=Math.max(...vals),range=Math.max(1,max-min);ctx.strokeStyle=getComputedStyle(document.body).getPropertyValue('--line');ctx.lineWidth=1;[.2,.5,.8].forEach(f=>{const y=20+(h-50)*f;ctx.beginPath();ctx.moveTo(25,y);ctx.lineTo(w-15,y);ctx.stroke()});const pts=data.map((d,i)=>({x:25+i*((w-50)/Math.max(1,data.length-1)),y:20+(max-d.value)/range*(h-55)}));ctx.strokeStyle=getComputedStyle(document.body).getPropertyValue(colorVar);ctx.lineWidth=5;ctx.lineJoin='round';ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();pts.forEach(p=>{ctx.fillStyle=getComputedStyle(document.body).getPropertyValue(colorVar);ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fill()});return true}
+function drawTrend(){const d=store.get('athena_os_checkins',[]).slice(-10).map(x=>({value:x.score}));$('#chartEmpty').style.display=drawLine('#trendChart',d)?'none':'block'}
+$('#clearHistory').onclick=()=>{localStorage.removeItem('athena_os_checkins');drawTrend();toast('Readiness history reset')};
+
+// Event tabs
+$$('.event-tab').forEach(b=>b.onclick=()=>{$$('.event-tab').forEach(x=>x.classList.remove('active'));$$('.event-pane').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#pane-'+b.dataset.tab).classList.add('active')});
+function fmt(sec){const m=Math.floor(sec/60),s=(sec-m*60).toFixed(2).padStart(5,'0');return m?`${m}:${s}`:`${s}s`}
+function parseTime(v){const p=String(v).split(':').map(Number);if(p.some(Number.isNaN))return 0;return p.length===1?p[0]:p.length===2?p[0]*60+p[1]:p[0]*3600+p[1]*60+p[2]}
+function phaseHTML(title,total,phases){return `<div class="blueprint-title"><div><small>PROJECTED RESULT</small><h3>${title}</h3></div><strong>${fmt(total)}</strong></div><div class="phase-list">${phases.map(p=>`<div class="phase"><b>${p.name}</b><div><div class="phase-bar"><span style="width:${p.pct}%"></span></div><small>${p.cue}</small></div><strong>${fmt(p.time)}</strong></div>`).join('')}</div>`}
+function sprintPlan(){const dist=+$('#sprintEvent').value,t=+$('#sprintGoal').value||13.2,str=$('#sprintStrength').value;let defs;if(dist<=100)defs=[['Drive',.30,'Push, rise gradually'],['Transition',.27,'Blend into upright sprinting'],['Max velocity',.27,'Relaxed speed'],['Finish',.16,'Hold mechanics through line']];else if(dist===200)defs=[['Curve attack',.48,'Build speed without forcing'],['Straight transition',.18,'Stay tall and relaxed'],['Finish',.34,'Protect posture under fatigue']];else if(dist===300)defs=[['Controlled launch',.33,'Fast but sustainable'],['Backstretch rhythm',.31,'Float without switching off'],['Finish pressure',.36,'Arms and posture late']];else defs=[['First 100',.235,'Controlled aggression'],['Second 100',.245,'Settle into rhythm'],['Third 100',.255,'Commit on the curve'],['Final 100',.265,'Maintain form under fatigue']];if(str==='start'){defs[0][1]-=.02;defs[defs.length-1][1]+=.02}if(str==='finish'){defs[0][1]+=.02;defs[defs.length-1][1]-=.02}const sum=defs.reduce((a,x)=>a+x[1],0);$('#sprintBlueprint').innerHTML=phaseHTML(`${dist}m blueprint`,t,defs.map(x=>({name:x[0],time:t*x[1]/sum,pct:x[1]/sum*100,cue:x[2]})))}
+$('#buildSprintPlan').onclick=sprintPlan;['sprintEvent','sprintGoal','sprintStrength'].forEach(id=>$('#'+id).oninput=sprintPlan);
+function hurdlePlan(){const e=$('#hurdleEvent').value,t=+$('#hurdleGoal').value||18.5,a=+$('#hurdleAllowance').value||4.5;const count={'100h':10,'110h':10,'300h':8,'400h':10}[e],rhythm=(t-a)/Math.max(1,count-1);$('#hurdleBlueprint').innerHTML=`<div class="blueprint-title"><div><small>RHYTHM MODEL</small><h3>${e.toUpperCase()}</h3></div><strong>${fmt(t)}</strong></div><div class="metric-grid"><div><small>Hurdles</small><b>${count}</b></div><div><small>Average between hurdles</small><b>${rhythm.toFixed(2)}s</b></div><div><small>Start + finish allowance</small><b>${a.toFixed(1)}s</b></div></div><div class="medical-note">Use this as a planning estimate. Actual rhythm varies across the race, especially in 300m and 400m hurdles.</div>`}
+$('#buildHurdlePlan').onclick=hurdlePlan;['hurdleEvent','hurdleGoal','hurdleAllowance'].forEach(id=>$('#'+id).oninput=hurdlePlan);
+function distancePlan(){const dist=+$('#distanceEvent').value,t=parseTime($('#distanceGoal').value)||345,str=$('#distanceStrategy').value;let adj=[1,1,1,1];if(str==='negative')adj=[1.02,1.01,.99,.98];if(str==='aggressive')adj=[.97,.99,1.01,1.03];const splits=[200,400,800,1000].filter(x=>x<=dist);const rows=splits.map(d=>{let base=t*d/dist;return `<div class="phase"><b>${d===1000?'1 km':d+'m'}</b><div><div class="phase-bar"><span style="width:${Math.min(100,d/dist*100)}%"></span></div><small>${str.replace(/^./,c=>c.toUpperCase())} strategy</small></div><strong>${fmt(base)}</strong></div>`}).join('');const laps=Math.ceil(dist/400),lapBase=t/laps;const lapRows=Array.from({length:laps},(_,i)=>{const mult=adj[Math.min(3,Math.floor(i/laps*4))];return `<span>Lap ${i+1}<b>${fmt(lapBase*mult)}</b></span>`}).join('');$('#distanceBlueprint').innerHTML=`<div class="blueprint-title"><div><small>GOAL PACE</small><h3>${dist===5000?'5K':dist+'m'} matrix</h3></div><strong>${fmt(t)}</strong></div><div class="phase-list">${rows}</div><div class="recommendations">${lapRows}</div>`}
+$('#buildPacePlan').onclick=distancePlan;['distanceEvent','distanceGoal','distanceStrategy'].forEach(id=>$('#'+id).oninput=distancePlan);
+
+// attempts
+function attemptModule(kind){const key=`athena_${kind}_attempts`,mark=$(`#${kind}Mark`),foul=$(`#${kind}Foul`),series=$(`#${kind}Series`),stats=$(`#${kind}Stats`);function render(){const a=store.get(key,[]),legal=a.filter(x=>!x.foul);series.innerHTML=a.length?a.map((x,i)=>`<div class="attempt ${x.foul?'foul':''}"><small>#${i+1}</small><b>${x.foul?'FOUL':x.mark.toFixed(2)+'m'}</b></div>`).join(''):'<p class="muted">No attempts recorded.</p>';const vals=legal.map(x=>x.mark),best=vals.length?Math.max(...vals):0,avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0,spread=vals.length>1?Math.max(...vals)-Math.min(...vals):0;stats.innerHTML=`<div><small>Best</small><b>${best?best.toFixed(2)+'m':'—'}</b></div><div><small>Legal average</small><b>${avg?avg.toFixed(2)+'m':'—'}</b></div><div><small>Consistency spread</small><b>${spread?spread.toFixed(2)+'m':'—'}</b></div>`} $(`#add${kind[0].toUpperCase()+kind.slice(1)}`).onclick=()=>{const v=+mark.value;if(!v&&!foul.checked)return toast('Enter a mark or choose foul');const a=store.get(key,[]);a.push({mark:v||0,foul:foul.checked});store.set(key,a);mark.value='';foul.checked=false;render()};$(`#reset${kind[0].toUpperCase()+kind.slice(1)}s`).onclick=()=>{localStorage.removeItem(key);render()};render()}
+attemptModule('jump');attemptModule('throw');
+
+// relay optimizer
+const defaultAthletes=[['Athlete A',64.2,8,7,9,8],['Athlete B',63.8,7,8,7,7],['Athlete C',65.0,9,6,8,9],['Athlete D',62.9,6,9,9,8]];
+function renderRelayAthletes(){const box=$('#relayAthletes');box.innerHTML=defaultAthletes.map((a,i)=>`<div class="relay-athlete"><h4>Athlete ${i+1}</h4><input class="ra-name" value="${a[0]}" aria-label="Athlete ${i+1} name"><div class="mini-fields"><label>Time<input class="ra-time" type="number" step=".01" value="${a[1]}"></label><label>Curve<input class="ra-curve" type="number" min="1" max="10" value="${a[2]}"></label><label>Exchange<input class="ra-exchange" type="number" min="1" max="10" value="${a[3]}"></label><label>Finish<input class="ra-finish" type="number" min="1" max="10" value="${a[4]}"></label><label>Pressure<input class="ra-pressure" type="number" min="1" max="10" value="${a[5]}"></label></div></div>`).join('')}
+function perms(a){if(a.length<2)return[a];return a.flatMap((x,i)=>perms([...a.slice(0,i),...a.slice(i+1)]).map(p=>[x,...p]))}
+function optimizeRelay(){const type=$('#relayEvent').value,names=$$('.ra-name').map(x=>x.value||'Athlete'),data=names.map((name,i)=>({name,time:+$$('.ra-time')[i].value,curve:+$$('.ra-curve')[i].value,exchange:+$$('.ra-exchange')[i].value,finish:+$$('.ra-finish')[i].value,pressure:+$$('.ra-pressure')[i].value}));const results=perms([0,1,2,3]).map(order=>{let total=0,why=[];order.forEach((idx,leg)=>{const a=data[idx];let penalty=0;if(type==='4x100'||type==='4x200'){penalty+=(10-a.exchange)*.035;if(leg===0||leg===2)penalty+=(10-a.curve)*.025}else if(type==='4x400'){if(leg===0)penalty+=(10-a.curve)*.03;if(leg===3)penalty+=(10-a.finish)*.04+(10-a.pressure)*.025}else{if(leg===0)penalty+=(10-a.pressure)*.05;if(leg===3)penalty+=(10-a.finish)*.07}total+=a.time+penalty});const anchor=data[order[3]];why.push(`Anchor: ${anchor.name} (${anchor.finish}/10 finish, ${anchor.pressure}/10 pressure)`);if(type==='4x100'||type==='4x200')why.push('Exchange and curve ratings influence placement');else why.push('Leg demands influence the planning score');return{order,total,why}}).sort((a,b)=>a.total-b.total).slice(0,3);$('#relayResults').innerHTML=results.map((r,i)=>`<article class="relay-card"><span class="rank">#${i+1} MODEL</span><h3>${fmt(r.total)}</h3><div class="relay-order">${r.order.map((idx,leg)=>`<span>L${leg+1}: ${data[idx].name}</span>`).join('')}</div><p class="muted">${r.why.join('. ')}.</p></article>`).join('')}
+renderRelayAthletes();$('#optimizeRelay').onclick=optimizeRelay;optimizeRelay();
+
+// Health
+function heatCalc(){const t=+$('#heatTemp').value,h=+$('#heatHumidity').value,d=+$('#heatDuration').value,int=+$('#heatIntensity').value,acc=+$('#heatAcclimated').value,dem=+$('#heatEventDemand').value;let burden=(t-70)*1.4+h*.16+d*.08+int*8+dem*5+(acc?0:12);let level='Standard awareness',cls='',advice=['Have water available','Use gradual pacing','Monitor symptoms'];if(burden>100){level='High concern — involve athletic staff';cls='danger';advice=['Modify, move, or postpone hard work','Increase cooling and rest access','Follow school heat policy / official WBGT','Stop immediately for confusion, collapse, or worsening symptoms']}else if(burden>75){level='Extra precautions recommended';cls='warn';advice=['Add scheduled breaks','Use shade or cooling','Reduce volume or intensity','Watch for headache, dizziness, nausea, weakness, or cramps']}const el=$('#heatResult');el.className=`health-result ${cls}`;el.innerHTML=`<small>EDUCATIONAL AWARENESS LEVEL</small><h3>${level}</h3><div class="recommendations">${advice.map(x=>`<span>${x}</span>`).join('')}</div><p class="fine-print">This is not WBGT and does not replace your school, coach, athletic trainer, nurse, or local policy.</p>`}
+['heatTemp','heatHumidity','heatDuration','heatIntensity','heatAcclimated','heatEventDemand'].forEach(id=>$('#'+id).oninput=heatCalc);
+function heartCalc(){const age=+$('#heartAge').value||15,max=220-age;$('#maxHr').textContent=`${max} bpm`;$('#moderateHr').textContent=`${Math.round(max*.5)}–${Math.round(max*.7)}`;$('#vigorousHr').textContent=`${Math.round(max*.7)}–${Math.round(max*.85)}`}
+$('#heartAge').oninput=heartCalc;
+const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+function sleepRender(){const vals=store.get('athena_sleep_week',[8,8,8,8,8,8.5,8.5]);$('#sleepWeek').innerHTML=days.map((d,i)=>`<label class="sleep-day"><small>${d}</small><input class="sleep-hour" type="number" min="0" max="14" step=".1" value="${vals[i]}"></label>`).join('');$$('.sleep-hour').forEach((e,i)=>e.oninput=()=>{const a=$$('.sleep-hour').map(x=>+x.value||0);store.set('athena_sleep_week',a);sleepSummary(a)});sleepSummary(vals)}
+function sleepSummary(a){const avg=a.reduce((x,y)=>x+y,0)/7,under=a.filter(x=>x<8).length,el=$('#sleepSummary');let cls='',title='Strong recovery pattern',msg='Your seven-night average is within the general 8–10 hour range for teens.';if(avg<8){cls='warn';title='Recovery opportunity';msg=`${under} night(s) were below 8 hours. Protecting a consistent schedule may support learning, reaction, and recovery.`}if(avg<6.5){cls='danger';title='Significant sleep concern';msg='Your average is far below general teen guidance. Tell a parent or healthcare professional if sleep problems persist.'}el.className=`health-result ${cls}`;el.innerHTML=`<small>7-NIGHT AVERAGE</small><h3>${avg.toFixed(1)} hours</h3><b>${title}</b><p>${msg}</p>`}
+$('#resetSleep').onclick=()=>{localStorage.removeItem('athena_sleep_week');sleepRender()};
+const concerns={heat:{title:'Possible heat illness',steps:['Stop activity and move to a cooler place.','Tell a coach, nurse, athletic trainer, parent, or other trusted adult immediately.','Do not wait for symptoms to become severe.'],urgent:'Confusion, collapse, fainting, seizure, or very hot skin can signal an emergency. Call 911 and begin rapid cooling while help is coming.'},head:{title:'Possible concussion after a hit',steps:['Leave activity immediately.','Tell an adult and do not return the same day without appropriate evaluation and clearance.','Continue monitoring because symptoms can appear later.'],urgent:'Call 911 for repeated vomiting, worsening headache, seizure, slurred speech, increasing confusion, unequal pupils, severe drowsiness, weakness, or loss of consciousness.'},breathing:{title:'Breathing concern',steps:['Stop activity and sit upright in a safe place.','Tell an adult immediately and follow an existing asthma or emergency action plan.','Do not borrow another person’s medication.'],urgent:'Call 911 for severe breathing difficulty, blue or gray lips, fainting, inability to speak normally, or rapidly worsening symptoms.'},cardiac:{title:'Chest pain, fainting, or unusual heart symptoms',steps:['Stop activity immediately.','Tell an adult and seek prompt medical evaluation.','Do not “push through” chest pain, fainting, or near-fainting.'],urgent:'Call 911 for collapse, unresponsiveness, severe chest pain, or abnormal breathing. Begin CPR and use an AED if trained and available.'},injury:{title:'Serious injury',steps:['Stop activity and avoid unnecessary movement.','Tell a coach, nurse, athletic trainer, or parent.','Do not force weight-bearing on a severely painful or deformed limb.'],urgent:'Call 911 for suspected neck/spine injury, uncontrolled bleeding, exposed bone, loss of feeling, severe deformity, or any life-threatening concern.'}};
+function showConcern(k){const c=concerns[k];$('#concernContent').innerHTML=`<h3>${c.title}</h3><ul>${c.steps.map(x=>`<li>${x}</li>`).join('')}</ul><div class="urgent"><b>Emergency warning:</b> ${c.urgent}</div>`}
+$$('.concern').forEach(b=>b.onclick=()=>{$$('.concern').forEach(x=>x.classList.remove('active'));b.classList.add('active');showConcern(b.dataset.concern)});
+
+// Handoff
+const symptoms=['Headache','Dizziness','Nausea','Weakness','Cramping','Shortness of breath','Chest pain','Vision change','Numbness / tingling','Swelling','Bleeding','Confusion'];
+$('#symptomGrid').innerHTML=symptoms.map(s=>`<label class="symptom-option"><input type="checkbox" value="${s}"> ${s}</label>`).join('');
+$('#handoffPain').oninput=()=>$('#painOut').value=`${$('#handoffPain').value} / 10`;
+function buildHandoff(e){e?.preventDefault();const name=$('#handoffName').value||'The athlete',sym=$$('#symptomGrid input:checked').map(x=>x.value),status=$('#handoffStatus').value,red=['Confused or acting unusually','Breathing is difficult','Fainted / lost consciousness','Repeated vomiting'].includes(status)||sym.includes('Chest pain');const note=`<h4>S — Situation</h4><p><b>${name}</b> was participating in <b>${$('#handoffEvent').value||'track and field activity'}</b>. ${$('#handoffSituation').value}. Symptoms began ${$('#handoffOnset').value||'at an unspecified time'}.</p><h4>B — Background</h4><p>${$('#handoffBackground').value||'No additional background was entered.'}</p><h4>A — Athlete-reported assessment</h4><p>Current status: <b>${status}</b>. Pain/discomfort: <b>${$('#handoffPain').value}/10</b>. Reported symptoms: <b>${sym.length?sym.join(', '):'none selected'}</b>.</p><p>Actions already taken: ${$('#handoffActions').value||'none entered'}.</p><h4>R — Request</h4><p><b>${$('#handoffRequest').value}</b>. Please assess the athlete and determine appropriate next steps. This note is athlete-reported and is not a diagnosis.</p>`;$('#handoffNote').innerHTML=note;$('#urgentBanner').classList.toggle('hidden',!red);$('#urgentBanner').textContent=red?'URGENT WARNING: Stop activity and get immediate adult help. Call 911 for severe or worsening symptoms, collapse, unresponsiveness, severe breathing difficulty, or chest pain.':'';if(voiceOn)speak(`${name} handoff created. ${red?'Urgent warning detected. Get immediate adult help.':''}`)}
+$('#handoffForm').onsubmit=buildHandoff;$('#copyHandoff').onclick=async()=>{await navigator.clipboard.writeText($('#handoffNote').innerText);toast('Handoff copied')};$('#printHandoff').onclick=()=>window.print();
+
+// Research
+function renderProtocol(){const p=store.get('athena_research_protocol',null),card=$('#protocolCard');if(!p){card.className='protocol-card empty-state';card.textContent='Create a protocol to begin.'}else{card.className='protocol-card';card.innerHTML=`<small>ACTIVE PROTOCOL · ${p.days} DAYS</small><h4>${p.question}</h4><p><b>Change:</b> ${p.iv}<br><b>Measure:</b> ${p.metric}<br><b>Plan:</b> ${p.plan||'Not specified'}<br><b>Safety:</b> ${p.safety}</p>`}renderObservations()}
+$('#researchForm').onsubmit=e=>{e.preventDefault();store.set('athena_research_protocol',{question:$('#researchQuestion').value,iv:$('#researchIV').value,metric:$('#researchMetric').value,days:$('#researchDays').value,safety:$('#researchSafety').value,plan:$('#researchPlan').value});renderProtocol();toast('Research protocol saved locally')};
+$('#observationDate').valueAsDate=new Date();$('#observationForm').onsubmit=e=>{e.preventDefault();const a=store.get('athena_research_obs',[]);a.push({date:$('#observationDate').value,value:+$('#observationValue').value,note:$('#observationNote').value});store.set('athena_research_obs',a);e.target.reset();$('#observationDate').valueAsDate=new Date();renderObservations()};
+function renderObservations(){const a=store.get('athena_research_obs',[]);$('#observationList').innerHTML=a.slice().reverse().map((x,ri)=>{const i=a.length-1-ri;return `<div class="observation"><span>${x.date}</span><b>${x.value}</b><span>${x.note||'—'}</span><button class="text-btn" data-obs="${i}">×</button></div>`}).join('');$$('[data-obs]').forEach(b=>b.onclick=()=>{const x=store.get('athena_research_obs',[]);x.splice(+b.dataset.obs,1);store.set('athena_research_obs',x);renderObservations()});drawLine('#researchChart',a.map(x=>({value:x.value})),'--accent2')}
+$('#exportResearch').onclick=()=>{const p=store.get('athena_research_protocol',{}),a=store.get('athena_research_obs',[]),csv=['date,value,note',...a.map(x=>`${x.date},${x.value},"${(x.note||'').replaceAll('"','""')}"`)].join('\n'),blob=new Blob([csv],{type:'text/csv'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='athena-research-data.csv';link.click();URL.revokeObjectURL(link.href);toast('Research data exported')};
+
+// Resume copy
+const resumeText=`ATHENA OS — Athlete Health Intelligence Platform | Co-Founder & Co-Lead Developer (50/50 collaboration)
+• Co-created a privacy-first web platform supporting sprinters, hurdlers, distance runners, jumpers, throwers, and relay teams through event-specific performance tools and explainable readiness insights.
+• Jointly engineered a relay optimizer that evaluates all 24 possible four-athlete orders using performance times and leg-specific curve, exchange, endurance, and pressure ratings.
+• Built an SBAR-style athlete-to-nurse handoff system that converts symptoms, context, and actions into clear communication while escalating emergency warning signs.
+• Developed interactive sprint, hurdle, distance, jump, throw, heat-awareness, heart-rate education, sleep-pattern, and athlete research modules using JavaScript and privacy-preserving local storage.
+• Shared equal responsibility for product strategy, research, UX/UI design, front-end development, testing, documentation, accessibility, offline functionality, and responsible health-safety framing.
+Co-Founders: Nikitha Mallojhala (nikitha.mallojhala@gmail.com) and Shriyan Avadhanula (avadhanula.shriyan@gmail.com).`;
+$('#copyResume').onclick=async()=>{await navigator.clipboard.writeText(resumeText);toast('Resume bullets copied')};
+
+// theme/offline/reveal
+$('#themeToggle').onclick=()=>{document.body.classList.toggle('light');store.set('athena_os_theme',document.body.classList.contains('light')?'light':'dark');drawTrend();renderObservations()};if(store.get('athena_os_theme','dark')==='light')document.body.classList.add('light');
+const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.06});$$('.reveal').forEach(x=>obs.observe(x));
+// Service worker omitted in standalone single-file build.
+
+// init
+loadProfile();updateReadiness();drawTrend();sprintPlan();hurdlePlan();distancePlan();heatCalc();heartCalc();sleepRender();showConcern('heat');renderProtocol();buildHandoff();
+
+  </script>
+</body>
+</html>

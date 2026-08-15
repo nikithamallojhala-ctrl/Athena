@@ -1,0 +1,647 @@
+{
+  "project": "ATHENA longitudinal athlete-state validation",
+  "generated_utc": "2026-08-15T17:30:32.063408+00:00",
+  "primary_question": "Can a dynamic, individualized, event-aware representation of an athlete's prior performance state improve one-step-ahead performance prediction over simpler static and personalized baselines?",
+  "target": "Next individual running performance in seconds (modeled as log seconds).",
+  "claim_boundary": "This experiment validates the longitudinal performance-state mechanism on NRCD race data. It does not validate daily sleep, soreness, stress, hydration, medical, injury-prevention, or return-to-play claims.",
+  "dataset": {
+    "name": "National Running Club Database (NRCD) anonymized public dataset",
+    "version": "v2.0.0",
+    "license": "CC BY 4.0",
+    "coverage": "2004\u2013May 2026",
+    "source_file": "data_nrcd_joined.csv",
+    "sha256": "2fdeb707163779bdf00c01d5722474aca02f7b7a7ab1ea1cdbba2a9ab40a234d",
+    "raw_joined_rows": 155109,
+    "unique_results_after_dedup": 118001,
+    "timed_individual_results_used": 118001,
+    "athletes_used": 27548,
+    "prediction_samples": 65895,
+    "known_limitation": "Historical pre-August-2023 metadata is sparser; weather is unavailable for many indoor/historical records."
+  },
+  "split": {
+    "strategy": "strict chronological target-date split",
+    "train": "through 2024",
+    "development": "2025",
+    "held_out_test": "2026 (through dataset coverage in May 2026)",
+    "n_train": 48577,
+    "n_dev": 11745,
+    "n_test": 5573,
+    "leakage_rule": "Each sample uses only results preceding its target race. Test-year targets are never used for fitting or conformal calibration."
+  },
+  "model_hierarchy": [
+    {
+      "model": "M1 Personalized",
+      "mae_seconds": 14.90672006241571,
+      "rmse_seconds": 70.61064249976859,
+      "mape_percent": 3.0784099620369614,
+      "median_ape_percent": 2.0782489322757733,
+      "within_3pct_percent": 64.99192535438722,
+      "within_5pct_percent": 83.63538489144088,
+      "n": 5573,
+      "fit_seconds": 0.0,
+      "latency_ms_per_1000": 0.0,
+      "serialized_kb": 0.0
+    },
+    {
+      "model": "M2 Temporal Ridge",
+      "mae_seconds": 14.82017717368228,
+      "rmse_seconds": 70.01945095046004,
+      "mape_percent": 3.1394986733112455,
+      "median_ape_percent": 2.1290853987655014,
+      "within_3pct_percent": 63.28727794724565,
+      "within_5pct_percent": 82.28961062264489,
+      "n": 5573,
+      "fit_seconds": 0.09479615100008232,
+      "latency_ms_per_1000": 0.9572671810203613,
+      "serialized_kb": 2.55078125
+    },
+    {
+      "model": "M3 Event-aware Ridge",
+      "mae_seconds": 14.176811071481389,
+      "rmse_seconds": 73.11811414677858,
+      "mape_percent": 3.1802119473180164,
+      "median_ape_percent": 2.219082314272992,
+      "within_3pct_percent": 61.97739099228423,
+      "within_5pct_percent": 82.39727256414857,
+      "n": 5573,
+      "fit_seconds": 0.8597713370002111,
+      "latency_ms_per_1000": 3.9697884443052507,
+      "serialized_kb": 5.32421875
+    },
+    {
+      "model": "M4 ATHENA Dynamic",
+      "mae_seconds": 20.645159937826435,
+      "rmse_seconds": 131.62997819918996,
+      "mape_percent": 4.302456088027905,
+      "median_ape_percent": 2.8757724628119727,
+      "within_3pct_percent": 51.6418446079311,
+      "within_5pct_percent": 72.16938812129912,
+      "n": 5573,
+      "fit_seconds": 1.5723975079999946,
+      "latency_ms_per_1000": 8.001691369081668,
+      "serialized_kb": 453.8642578125
+    },
+    {
+      "model": "M0 Population",
+      "mae_seconds": 45.81875887117624,
+      "rmse_seconds": 164.4959490355902,
+      "mape_percent": 17.531781882557905,
+      "median_ape_percent": 8.475500891966155,
+      "within_3pct_percent": 17.764220348106942,
+      "within_5pct_percent": 29.71469585501525,
+      "n": 5573,
+      "fit_seconds": 0.0,
+      "latency_ms_per_1000": 0.0,
+      "serialized_kb": 0.0
+    }
+  ],
+  "full_model": {
+    "name": "M4 ATHENA Dynamic",
+    "features": [
+      "log_last_time",
+      "log_mean_prior",
+      "log_median_prior",
+      "log_best_prior",
+      "log_recent3_mean",
+      "log_ewma_time",
+      "history_cv",
+      "trend_recent",
+      "days_since",
+      "prior_count",
+      "grade_num",
+      "temperature",
+      "humidity",
+      "dew_point",
+      "wind_speed",
+      "precipitation_mm",
+      "altitude",
+      "regionals",
+      "nationals",
+      "nirca_only",
+      "event_name",
+      "sport_name",
+      "gender"
+    ],
+    "test": {
+      "mae_seconds": 20.645159937826435,
+      "rmse_seconds": 131.62997819918996,
+      "mape_percent": 4.302456088027905,
+      "median_ape_percent": 2.8757724628119727,
+      "within_3pct_percent": 51.6418446079311,
+      "within_5pct_percent": 72.16938812129912,
+      "n": 5573
+    },
+    "development": {
+      "mae_seconds": 50.85077248446257,
+      "rmse_seconds": 103.96525069265739,
+      "mape_percent": 4.341916809329994,
+      "median_ape_percent": 3.123752911336247,
+      "within_3pct_percent": 48.1651766709238,
+      "within_5pct_percent": 69.29757343550446,
+      "n": 11745
+    },
+    "uncertainty": {
+      "nominal_coverage_percent": 80.0,
+      "empirical_coverage_percent": 78.23434415933967,
+      "median_interval_width_percent_of_prediction": 12.123660495021122,
+      "global_log_residual_quantile": 0.06572784052564806,
+      "event_specific_groups": 13
+    },
+    "bootstrap_vs_personalized": {
+      "mean_delta_mape_points": 1.224046125990943,
+      "ci95": [
+        1.107111567239645,
+        1.3427812161697077
+      ],
+      "bootstrap_n": 400
+    },
+    "bootstrap_vs_population": {
+      "mean_delta_mape_points": -13.22932579453,
+      "ci95": [
+        -17.063777519404805,
+        -9.9088392723646
+      ],
+      "bootstrap_n": 400
+    },
+    "model_disagreement": {
+      "median_disagreement_percent": 1.8620574557223701,
+      "low_disagreement_test_mape": 2.7119277790681444,
+      "high_disagreement_test_mape": 7.932494686079277,
+      "high_disagreement_threshold_percent": 3.6045907285152743
+    },
+    "feature_group_permutation_importance": [
+      {
+        "group": "personal baseline",
+        "mape_increase_points": 759.1305193432552
+      },
+      {
+        "group": "recent performance",
+        "mape_increase_points": 37.0124699954961
+      },
+      {
+        "group": "event identity",
+        "mape_increase_points": 2.397498628076077
+      },
+      {
+        "group": "environment/context",
+        "mape_increase_points": 0.4346209952638844
+      },
+      {
+        "group": "trajectory/timing",
+        "mape_increase_points": 0.07945664405682873
+      }
+    ]
+  },
+  "ablations": [
+    {
+      "name": "No personalization",
+      "test_mape_percent": 16.995978831561438,
+      "delta_vs_full_mape_points": 12.693522743533531,
+      "n_features": 13
+    },
+    {
+      "name": "No event/context",
+      "test_mape_percent": 4.6412533602112065,
+      "delta_vs_full_mape_points": 0.33879727218330125,
+      "n_features": 10
+    },
+    {
+      "name": "No temporal recency",
+      "test_mape_percent": 4.387316414004762,
+      "delta_vs_full_mape_points": 0.084860325976857,
+      "n_features": 18
+    },
+    {
+      "name": "No environment",
+      "test_mape_percent": 4.221455201753541,
+      "delta_vs_full_mape_points": -0.08100088627436453,
+      "n_features": 17
+    }
+  ],
+  "robustness": [
+    {
+      "stress_test": "Environment missing",
+      "mae_seconds": 20.60280837381063,
+      "rmse_seconds": 129.77739602236164,
+      "mape_percent": 4.195017477803217,
+      "median_ape_percent": 2.8523733304277847,
+      "within_3pct_percent": 52.21604162928405,
+      "within_5pct_percent": 72.67181051498295,
+      "n": 5573
+    },
+    {
+      "stress_test": "Recent-time + context noise",
+      "mae_seconds": 20.22931113197451,
+      "rmse_seconds": 127.87952192849873,
+      "mape_percent": 4.250558209522712,
+      "median_ape_percent": 2.866438900268187,
+      "within_3pct_percent": 51.83922483402117,
+      "within_5pct_percent": 72.38471200430648,
+      "n": 5573
+    },
+    {
+      "stress_test": "Sparse history (\u22643 prior)",
+      "mae_seconds": 25.58667947803344,
+      "rmse_seconds": 156.31482868667774,
+      "mape_percent": 4.461538929188255,
+      "median_ape_percent": 2.891596387712848,
+      "within_3pct_percent": 51.36514416943098,
+      "within_5pct_percent": 71.5743812196989,
+      "n": 3919
+    },
+    {
+      "stress_test": "Mature history (\u22658 prior)",
+      "mae_seconds": 6.3216887817945375,
+      "rmse_seconds": 20.188143102203437,
+      "mape_percent": 3.5357114332970263,
+      "median_ape_percent": 2.7188712777081516,
+      "within_3pct_percent": 55.172413793103445,
+      "within_5pct_percent": 77.70114942528735,
+      "n": 435
+    }
+  ],
+  "event_subgroups": [
+    {
+      "event": "800m",
+      "n": 944,
+      "mape_percent": 4.443229437296375,
+      "median_ape_percent": 3.0788932351150633
+    },
+    {
+      "event": "200m",
+      "n": 765,
+      "mape_percent": 2.9618195097287217,
+      "median_ape_percent": 2.200983827661206
+    },
+    {
+      "event": "Mile",
+      "n": 685,
+      "mape_percent": 3.7147033168442785,
+      "median_ape_percent": 2.822860999662915
+    },
+    {
+      "event": "1500m",
+      "n": 549,
+      "mape_percent": 3.3759899336226495,
+      "median_ape_percent": 2.458407530051828
+    },
+    {
+      "event": "5000m",
+      "n": 514,
+      "mape_percent": 4.629671493326766,
+      "median_ape_percent": 2.5806489074023418
+    },
+    {
+      "event": "400m",
+      "n": 446,
+      "mape_percent": 5.044757002858731,
+      "median_ape_percent": 3.251836547567251
+    },
+    {
+      "event": "60m",
+      "n": 429,
+      "mape_percent": 2.991648727792282,
+      "median_ape_percent": 2.364304077230654
+    },
+    {
+      "event": "100m",
+      "n": 325,
+      "mape_percent": 3.263660987436181,
+      "median_ape_percent": 2.6229768433920744
+    },
+    {
+      "event": "3000m",
+      "n": 275,
+      "mape_percent": 5.659518883510847,
+      "median_ape_percent": 5.052828827314604
+    },
+    {
+      "event": "60m Hurdles",
+      "n": 160,
+      "mape_percent": 5.149601688372371,
+      "median_ape_percent": 3.7868923856787724
+    },
+    {
+      "event": "1600m",
+      "n": 86,
+      "mape_percent": 4.617700335839827,
+      "median_ape_percent": 3.303385877127573
+    },
+    {
+      "event": "3000m Steeplechase",
+      "n": 85,
+      "mape_percent": 5.708166927113494,
+      "median_ape_percent": 5.065882510538295
+    }
+  ],
+  "largest_error_cases": [
+    {
+      "date": "2026-01-31",
+      "event_name": "60m Hurdles",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 9.9,
+      "last_time": 17.39,
+      "history_cv": 0.0,
+      "days_since": 56.0,
+      "pred_seconds": 20.932,
+      "ape_percent": 111.439,
+      "interval_low": 19.558,
+      "interval_high": 22.403,
+      "covered": false
+    },
+    {
+      "date": "2026-04-03",
+      "event_name": "5000m",
+      "sport_name": "Outdoor Track",
+      "gender": "F",
+      "prior_count": 1,
+      "target_seconds": 1053.07,
+      "last_time": 2024.6,
+      "history_cv": 0.0,
+      "days_since": 196.0,
+      "pred_seconds": 1978.757,
+      "ape_percent": 87.904,
+      "interval_low": 1862.44,
+      "interval_high": 2102.338,
+      "covered": false
+    },
+    {
+      "date": "2026-03-07",
+      "event_name": "5000m",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 1136.7,
+      "last_time": 2319.1,
+      "history_cv": 0.0,
+      "days_since": 169.0,
+      "pred_seconds": 2130.579,
+      "ape_percent": 87.435,
+      "interval_low": 2005.338,
+      "interval_high": 2263.642,
+      "covered": false
+    },
+    {
+      "date": "2026-03-07",
+      "event_name": "5000m",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 1013.23,
+      "last_time": 1846.9,
+      "history_cv": 0.0,
+      "days_since": 169.0,
+      "pred_seconds": 1811.55,
+      "ape_percent": 78.79,
+      "interval_low": 1705.062,
+      "interval_high": 1924.689,
+      "covered": false
+    },
+    {
+      "date": "2026-04-03",
+      "event_name": "5000m",
+      "sport_name": "Outdoor Track",
+      "gender": "F",
+      "prior_count": 1,
+      "target_seconds": 1152.94,
+      "last_time": 2073.7,
+      "history_cv": 0.0,
+      "days_since": 196.0,
+      "pred_seconds": 2018.324,
+      "ape_percent": 75.059,
+      "interval_low": 1899.681,
+      "interval_high": 2144.376,
+      "covered": false
+    },
+    {
+      "date": "2026-03-28",
+      "event_name": "5000m",
+      "sport_name": "Road Race",
+      "gender": "F",
+      "prior_count": 1,
+      "target_seconds": 1352.97,
+      "last_time": 1536.0,
+      "history_cv": 0.0,
+      "days_since": 196.0,
+      "pred_seconds": 2122.372,
+      "ape_percent": 56.868,
+      "interval_low": 1997.614,
+      "interval_high": 2254.923,
+      "covered": false
+    },
+    {
+      "date": "2026-03-21",
+      "event_name": "300m Hurdles",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 56.04,
+      "last_time": 46.62,
+      "history_cv": 0.0,
+      "days_since": 364.0,
+      "pred_seconds": 24.803,
+      "ape_percent": 55.741,
+      "interval_low": 23.225,
+      "interval_high": 26.488,
+      "covered": false
+    },
+    {
+      "date": "2026-03-21",
+      "event_name": "300m Hurdles",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 53.98,
+      "last_time": 49.44,
+      "history_cv": 0.0,
+      "days_since": 364.0,
+      "pred_seconds": 24.803,
+      "ape_percent": 54.052,
+      "interval_low": 23.225,
+      "interval_high": 26.488,
+      "covered": false
+    },
+    {
+      "date": "2026-03-07",
+      "event_name": "300m Hurdles",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 47.91,
+      "last_time": 47.54,
+      "history_cv": 0.0,
+      "days_since": 350.0,
+      "pred_seconds": 24.977,
+      "ape_percent": 47.867,
+      "interval_low": 23.388,
+      "interval_high": 26.674,
+      "covered": false
+    },
+    {
+      "date": "2026-03-07",
+      "event_name": "300m Hurdles",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "target_seconds": 48.93,
+      "last_time": 44.77,
+      "history_cv": 0.0,
+      "days_since": 749.0,
+      "pred_seconds": 25.56,
+      "ape_percent": 47.763,
+      "interval_low": 23.934,
+      "interval_high": 27.296,
+      "covered": false
+    },
+    {
+      "date": "2026-04-20",
+      "event_name": "Marathon",
+      "sport_name": "Road Race",
+      "gender": "F",
+      "prior_count": 1,
+      "target_seconds": 11182.0,
+      "last_time": 11755.0,
+      "history_cv": 0.0,
+      "days_since": 414.0,
+      "pred_seconds": 5887.845,
+      "ape_percent": 47.345,
+      "interval_low": 5513.294,
+      "interval_high": 6287.842,
+      "covered": false
+    },
+    {
+      "date": "2026-04-20",
+      "event_name": "Marathon",
+      "sport_name": "Road Race",
+      "gender": "F",
+      "prior_count": 1,
+      "target_seconds": 10891.0,
+      "last_time": 10128.0,
+      "history_cv": 0.0,
+      "days_since": 554.0,
+      "pred_seconds": 5898.391,
+      "ape_percent": 45.842,
+      "interval_low": 5523.169,
+      "interval_high": 6299.104,
+      "covered": false
+    }
+  ],
+  "heldout_examples": [
+    {
+      "date": "2026-04-11",
+      "event_name": "200m",
+      "sport_name": "Outdoor Track",
+      "gender": "M",
+      "prior_count": 1,
+      "last_time": 28.11,
+      "prediction": 27.309,
+      "interval_low": 25.992,
+      "interval_high": 28.693,
+      "target_seconds": 27.31,
+      "ape": 0.002
+    },
+    {
+      "date": "2026-02-21",
+      "event_name": "3000m",
+      "sport_name": "Indoor Track",
+      "gender": NaN,
+      "prior_count": 8,
+      "last_time": 553.39,
+      "prediction": 541.506,
+      "interval_low": 498.442,
+      "interval_high": 588.291,
+      "target_seconds": 537.98,
+      "ape": 0.655
+    },
+    {
+      "date": "2026-03-28",
+      "event_name": "800m",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 2,
+      "last_time": 124.29,
+      "prediction": 126.681,
+      "interval_low": 118.9,
+      "interval_high": 134.972,
+      "target_seconds": 125.0,
+      "ape": 1.345
+    },
+    {
+      "date": "2026-01-17",
+      "event_name": "60m",
+      "sport_name": "Indoor Track",
+      "gender": NaN,
+      "prior_count": 6,
+      "last_time": 7.83,
+      "prediction": 7.893,
+      "interval_low": 7.536,
+      "interval_high": 8.266,
+      "target_seconds": 8.06,
+      "ape": 2.076
+    },
+    {
+      "date": "2026-03-20",
+      "event_name": "400m",
+      "sport_name": "Outdoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "last_time": 54.26,
+      "prediction": 54.925,
+      "interval_low": 50.286,
+      "interval_high": 59.992,
+      "target_seconds": 53.39,
+      "ape": 2.875
+    },
+    {
+      "date": "2026-04-11",
+      "event_name": "800m",
+      "sport_name": "Outdoor Track",
+      "gender": "M",
+      "prior_count": 6,
+      "last_time": 122.62,
+      "prediction": 120.928,
+      "interval_low": 113.5,
+      "interval_high": 128.842,
+      "target_seconds": 125.85,
+      "ape": 3.911
+    },
+    {
+      "date": "2026-01-23",
+      "event_name": "3000m",
+      "sport_name": "Indoor Track",
+      "gender": NaN,
+      "prior_count": 2,
+      "last_time": 665.17,
+      "prediction": 664.638,
+      "interval_low": 611.781,
+      "interval_high": 722.062,
+      "target_seconds": 630.67,
+      "ape": 5.386
+    },
+    {
+      "date": "2026-02-20",
+      "event_name": "Mile",
+      "sport_name": "Indoor Track",
+      "gender": NaN,
+      "prior_count": 1,
+      "last_time": 341.93,
+      "prediction": 336.218,
+      "interval_low": 319.489,
+      "interval_high": 353.824,
+      "target_seconds": 366.02,
+      "ape": 8.142
+    }
+  ],
+  "reproducibility": {
+    "random_seed": 42,
+    "python": "3.13.5",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "sklearn": "1.8.0",
+    "script": "scripts/research_pipeline.py",
+    "experiment_id": "ATHENA-NRCD-NEXT-RACE-v1"
+  }
+}

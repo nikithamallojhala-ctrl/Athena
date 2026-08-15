@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="ATHENA emblem">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#79e5ff"/><stop offset="1" stop-color="#a88cff"/></linearGradient></defs>
+  <path d="M64 8 112 30v37c0 27-19 45-48 53C35 112 16 94 16 67V30L64 8Z" fill="#081725" stroke="url(#g)" stroke-width="4"/>
+  <path d="M64 25 91 89H78l-7-18H49l-7 18H29L56 25h8Zm0 18-10 25h20L64 43Z" fill="url(#g)"/>
+  <path d="M38 39c12-13 40-13 52 0-6-2-12-2-18 0-5-5-11-8-18-8-6 0-11 2-16 8Z" fill="#d8f8ff" opacity=".9"/>
+  <circle cx="45" cy="48" r="3" fill="#79e5ff"/><circle cx="83" cy="48" r="3" fill="#a88cff"/>
+</svg>

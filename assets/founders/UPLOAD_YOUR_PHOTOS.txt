@@ -1,0 +1,8 @@
+Founder portrait slots
+----------------------
+Recommended:
+  nikitha.jpg
+  shriyan.jpg
+
+If you use different filenames, edit photos.json to match the exact case-sensitive filename.
+When updating an existing GitHub repository, preserve/re-upload your actual founder image files because this release package does not contain your personal photos.

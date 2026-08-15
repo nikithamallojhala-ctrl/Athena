@@ -1,0 +1,543 @@
+{
+  "project": "ATHENA OS Phase 1D evidence-hardening wellness-state validation",
+  "generated_utc": "2026-08-15T19:57:32.987914+00:00",
+  "question": "Can individualized temporal wellness state improve next-day readiness prediction over generic/static and persistence baselines?",
+  "claim_boundary": "This reanalysis supports ATHENA's wellness-state modeling mechanism on subjective PMData wellness logs. It does not establish medical readiness, causal effects, injury prevention, or clinical validity.",
+  "dataset": {
+    "name": "PMData: A Sports Logging Dataset",
+    "participants": 16,
+    "raw_wellness_rows": 1747,
+    "daily_rows": 1729,
+    "prediction_samples": 1669,
+    "source": "Simula PMData",
+    "published_scales": "fatigue/mood/sleep quality/soreness/stress 1-5; readiness 0-10; sleep duration in hours",
+    "files": [
+      {
+        "file": "p01_wellness.csv",
+        "sha256": "9dc6e6c0bd33487d4621ac4cf26a4f10b150d30a4bb1179b2b52f4396b1cde2e"
+      },
+      {
+        "file": "p02_wellness.csv",
+        "sha256": "0175eeb76a0ababbe55e413dec70768644c02a991afea672a6b0e979bbdafa09"
+      },
+      {
+        "file": "p03_wellness.csv",
+        "sha256": "e951fa6f4d4932df8dade879b5800e2bbb470b94eebfeb05dff508e3780032c4"
+      },
+      {
+        "file": "p04_wellness.csv",
+        "sha256": "6a431a635071cf9a5ebbc20eb7122847f20f8a1472fb1c96573fa5a846393db2"
+      },
+      {
+        "file": "p05_wellness.csv",
+        "sha256": "c1f6e1f492436450ee74bcac66265143d9c11d7fa4ea293a0067a2c642955420"
+      },
+      {
+        "file": "p06_wellness.csv",
+        "sha256": "a60a0f533de146b5ca0558164b772a5ad738fd4c1f7795a0135246b7e3a31e8e"
+      },
+      {
+        "file": "p07_wellness.csv",
+        "sha256": "f33a14b06ccf6393895322391df5d3c0d6ea113322c5c9a7671c46bb22993897"
+      },
+      {
+        "file": "p08_wellness.csv",
+        "sha256": "a4474f816d00ad23ba63887619383fb5530ec7dd955e19940fa73115767bdc7b"
+      },
+      {
+        "file": "p09_wellness.csv",
+        "sha256": "77f4fcd0222bdb37d85b0991620851104f5d383c6aa9d2b5e2230805917baa4d"
+      },
+      {
+        "file": "p10_wellness.csv",
+        "sha256": "b4fefbdfbb8f0ec7178c0cc83efcc03a2f68ebe227e11e67a5471cd25840aab1"
+      },
+      {
+        "file": "p11_wellness.csv",
+        "sha256": "d2793ccb5ead696090e539a9849b91a170b4e9cd622f9745d50c0925fd73ede8"
+      },
+      {
+        "file": "p12_wellness.csv",
+        "sha256": "3c5e213a9c4de3a35744a81469ca1ba2db9e1e3f66ec0a0a06161c653cdbf731"
+      },
+      {
+        "file": "p13_wellness.csv",
+        "sha256": "14640f075ac0aa5c0e5deffcc3b888142d9b9d0752d50cb40e968cdd5b18ae16"
+      },
+      {
+        "file": "p14_wellness.csv",
+        "sha256": "61cfd166d45db134bb27ae1549d2748e18bce4ad0c18137362d3965e3f5152e5"
+      },
+      {
+        "file": "p15_wellness.csv",
+        "sha256": "d0a06ced1b229e6972c1342f378f518587302f0cc23b71c5f34f816f4d4226ad"
+      },
+      {
+        "file": "p16_wellness.csv",
+        "sha256": "991e1ffc3784f744613f42228c2c57de5e082535a536942b5ede9ac8befef082"
+      }
+    ],
+    "dropped_out_of_range_rows": 0,
+    "limitation": "Small 16-person observational dataset with subjective self-report; results are a secondary-domain validation, not universal athlete evidence."
+  },
+  "protocol": {
+    "target": "next recorded-day subjective readiness (0-10)",
+    "max_gap_days": 3,
+    "main_split": "within each participant, earliest 60% train / next 20% calibration / latest 20% evaluation",
+    "n_train": 995,
+    "n_calibration": 333,
+    "n_evaluation": 341,
+    "leakage_rule": "Every lag/rolling feature is shifted so it contains only the current or earlier report; target is the later report.",
+    "model_selection": "Blend weight is selected on calibration only. Evaluation results do not choose the weight.",
+    "external_stress_test": "leave-one-participant-out"
+  },
+  "model_hierarchy": [
+    {
+      "model": "W0 Global mean",
+      "mae_readiness_points": 1.3531813515279232,
+      "rmse_readiness_points": 1.7475024401734423,
+      "median_abs_error": 1.167671691792295,
+      "within_1_point_percent": 43.988269794721404,
+      "n": 341,
+      "notes": "Generic population mean from training partition."
+    },
+    {
+      "model": "W1 Persistence",
+      "mae_readiness_points": 1.029325513196481,
+      "rmse_readiness_points": 1.5416980393626958,
+      "median_abs_error": 1.0,
+      "within_1_point_percent": 75.366568914956,
+      "n": 341,
+      "notes": "Tomorrow readiness = today's readiness; strong simple temporal baseline."
+    },
+    {
+      "model": "W2 Static wellness Ridge",
+      "mae_readiness_points": 1.3536183801938306,
+      "rmse_readiness_points": 1.7526481487633194,
+      "median_abs_error": 1.0929114796026402,
+      "within_1_point_percent": 47.50733137829912,
+      "n": 341,
+      "notes": "Current sleep/fatigue/mood/soreness/stress only; no longitudinal state."
+    },
+    {
+      "model": "W3 Nonlinear temporal HGB comparator",
+      "mae_readiness_points": 1.1369584174958072,
+      "rmse_readiness_points": 1.489406124137125,
+      "median_abs_error": 0.8844694599231717,
+      "within_1_point_percent": 56.01173020527859,
+      "n": 341,
+      "notes": "Higher-complexity comparator; retained to test whether complexity earns benefit."
+    },
+    {
+      "model": "W4 ATHENA dynamic wellness",
+      "mae_readiness_points": 0.9447110680745597,
+      "rmse_readiness_points": 1.2741815518976292,
+      "median_abs_error": 0.7378672897049192,
+      "within_1_point_percent": 63.34310850439883,
+      "n": 341,
+      "notes": "Interpretable temporal Ridge blended toward persistence using calibration-only \u03bb=0.9."
+    }
+  ],
+  "athena": {
+    "calibration_blend_lambda": 0.9,
+    "evaluation": {
+      "mae_readiness_points": 0.9447110680745597,
+      "rmse_readiness_points": 1.2741815518976292,
+      "median_abs_error": 0.7378672897049192,
+      "within_1_point_percent": 63.34310850439883,
+      "n": 341
+    },
+    "vs_persistence_relative_mae_change_percent": -8.22037771697297,
+    "cluster_bootstrap_vs_persistence": {
+      "mean_delta_mae_points": -0.08461444512192125,
+      "ci95_low": -0.20459165551520384,
+      "ci95_high": 0.021644576409656918,
+      "participants_improved": 10,
+      "participants_total": 16,
+      "interpretation": "Negative values favor ATHENA. Bootstrap unit is participant, not daily record."
+    },
+    "participant_exact_randomization_vs_persistence": {
+      "unit": "participant-level mean paired absolute-error difference",
+      "participants": 16,
+      "observed_equal_participant_delta_mae_points": -0.07622416373135996,
+      "one_sided_exact_p": 0.1036529541015625,
+      "two_sided_exact_p": 0.207305908203125,
+      "assignments": 65536,
+      "interpretation": "Exact participant-level sign-flip diagnostic. It complements the participant-cluster bootstrap; the result is not definitive and does not convert this small observational dataset into a causal study."
+    },
+    "serialized_model_kb": 3.0791015625,
+    "complexity_decision": "The interpretable Ridge state model is retained because the nonlinear HGB comparator did not earn its extra complexity on the pre-specified evaluation."
+  },
+  "external_user_replication": {
+    "design": "Leave-one-participant-out: the held-out participant never appears in model fitting.",
+    "participant_results": [
+      {
+        "participant": "p01",
+        "n": 136,
+        "static_mae": 2.081914830395049,
+        "dynamic_mae": 1.2844776434098768,
+        "persistence_mae": 1.3455882352941178
+      },
+      {
+        "participant": "p02",
+        "n": 96,
+        "static_mae": 0.9624857642956185,
+        "dynamic_mae": 0.9148157486688676,
+        "persistence_mae": 0.96875
+      },
+      {
+        "participant": "p03",
+        "n": 67,
+        "static_mae": 0.1661060936169235,
+        "dynamic_mae": 0.1867214838437889,
+        "persistence_mae": 0.1044776119402985
+      },
+      {
+        "participant": "p04",
+        "n": 143,
+        "static_mae": 0.9186284958547156,
+        "dynamic_mae": 0.9068907287399471,
+        "persistence_mae": 1.0419580419580419
+      },
+      {
+        "participant": "p05",
+        "n": 133,
+        "static_mae": 2.512682577637098,
+        "dynamic_mae": 0.9855551967014784,
+        "persistence_mae": 0.3458646616541353
+      },
+      {
+        "participant": "p06",
+        "n": 146,
+        "static_mae": 1.5047147812763078,
+        "dynamic_mae": 1.473499291925687,
+        "persistence_mae": 1.7876712328767124
+      },
+      {
+        "participant": "p07",
+        "n": 130,
+        "static_mae": 1.7154316526073092,
+        "dynamic_mae": 1.0516981328942308,
+        "persistence_mae": 1.2307692307692308
+      },
+      {
+        "participant": "p08",
+        "n": 99,
+        "static_mae": 1.3903783094834472,
+        "dynamic_mae": 1.3085625321880394,
+        "persistence_mae": 1.3838383838383839
+      },
+      {
+        "participant": "p09",
+        "n": 96,
+        "static_mae": 1.0449385602608807,
+        "dynamic_mae": 0.7442914943556671,
+        "persistence_mae": 0.875
+      },
+      {
+        "participant": "p10",
+        "n": 94,
+        "static_mae": 1.7145661585268472,
+        "dynamic_mae": 1.2194882309730957,
+        "persistence_mae": 1.3936170212765957
+      },
+      {
+        "participant": "p11",
+        "n": 105,
+        "static_mae": 1.2109912007755388,
+        "dynamic_mae": 1.1014258053903763,
+        "persistence_mae": 1.1904761904761905
+      },
+      {
+        "participant": "p12",
+        "n": 79,
+        "static_mae": 1.5069862919730113,
+        "dynamic_mae": 1.3180964256100576,
+        "persistence_mae": 1.5569620253164558
+      },
+      {
+        "participant": "p13",
+        "n": 57,
+        "static_mae": 3.165775488106351,
+        "dynamic_mae": 1.872297729071481,
+        "persistence_mae": 1.8157894736842106
+      },
+      {
+        "participant": "p14",
+        "n": 122,
+        "static_mae": 1.7348399912684116,
+        "dynamic_mae": 0.6972564700597568,
+        "persistence_mae": 0.6229508196721312
+      },
+      {
+        "participant": "p15",
+        "n": 90,
+        "static_mae": 2.1157603481860603,
+        "dynamic_mae": 1.4299247153440615,
+        "persistence_mae": 1.788888888888889
+      },
+      {
+        "participant": "p16",
+        "n": 76,
+        "static_mae": 0.9441141416146862,
+        "dynamic_mae": 0.5146579155730647,
+        "persistence_mae": 0.5921052631578947
+      }
+    ],
+    "participant_mean_mae": {
+      "static": 1.543144667867391,
+      "persistence": 1.1277941925502053,
+      "athena_dynamic": 1.0631037215468424
+    },
+    "pooled": {
+      "static": {
+        "mae_readiness_points": 1.5545361555096993,
+        "rmse_readiness_points": 2.0324543208214023,
+        "median_abs_error": 1.2305149321334925,
+        "within_1_point_percent": 41.40203714799281,
+        "n": 1669
+      },
+      "persistence": {
+        "mae_readiness_points": 1.1291192330736968,
+        "rmse_readiness_points": 1.6709800385786402,
+        "median_abs_error": 1.0,
+        "within_1_point_percent": 70.28160575194727,
+        "n": 1669
+      },
+      "athena_dynamic": {
+        "mae_readiness_points": 1.0680897908785476,
+        "rmse_readiness_points": 1.4243472958150596,
+        "median_abs_error": 0.8280100697991557,
+        "within_1_point_percent": 56.86039544637508,
+        "n": 1669
+      }
+    },
+    "participants_dynamic_better_than_persistence": 12,
+    "participants_dynamic_better_than_static": 15,
+    "participants_total": 16
+  },
+  "split_sensitivity": [
+    {
+      "split": "50/25/25",
+      "n_evaluation": 423,
+      "calibration_blend": 0.8,
+      "athena_mae": 0.9335708551007706,
+      "persistence_mae": 1.0472813238770686,
+      "relative_mae_change_percent": -10.857681330107006
+    },
+    {
+      "split": "70/15/15",
+      "n_evaluation": 258,
+      "calibration_blend": 0.8,
+      "athena_mae": 0.9445034587074502,
+      "persistence_mae": 1.0213178294573644,
+      "relative_mae_change_percent": -7.521103473805635
+    }
+  ],
+  "negative_control": {
+    "design": "Training targets permuted once with fixed seed; calibration still chooses the blend.",
+    "calibration_blend_lambda": 0.3,
+    "evaluation": {
+      "mae_readiness_points": 1.0280229820280409,
+      "rmse_readiness_points": 1.4201106515060715,
+      "median_abs_error": 0.7676855382438781,
+      "within_1_point_percent": 60.70381231671554,
+      "n": 341
+    },
+    "persistence": {
+      "mae_readiness_points": 1.029325513196481,
+      "rmse_readiness_points": 1.5416980393626958,
+      "median_abs_error": 1.0,
+      "within_1_point_percent": 75.366568914956,
+      "n": 341
+    },
+    "interpretation": "A leakage-resistant/calibration-aware pipeline should not manufacture benefit after the training target is scrambled."
+  },
+  "ablations": [
+    {
+      "name": "No current sleep",
+      "mae_readiness_points": 0.945796286849251,
+      "delta_vs_full_mae_points": 0.0010852187746912545,
+      "calibration_blend": 0.9
+    },
+    {
+      "name": "No current fatigue/soreness/stress",
+      "mae_readiness_points": 0.939726408353812,
+      "delta_vs_full_mae_points": -0.004984659720747686,
+      "calibration_blend": 1.0
+    },
+    {
+      "name": "No longitudinal history",
+      "mae_readiness_points": 1.007682454289756,
+      "delta_vs_full_mae_points": 0.06297138621519627,
+      "calibration_blend": 0.8
+    },
+    {
+      "name": "No current readiness/persistence anchor",
+      "mae_readiness_points": 0.9393908230974857,
+      "delta_vs_full_mae_points": -0.005320244977074062,
+      "calibration_blend": 0.7
+    }
+  ],
+  "robustness": [
+    {
+      "condition": "10% feature cells missing at random",
+      "mae_readiness_points": 0.9863544101258759,
+      "rmse_readiness_points": 1.3272579606037687,
+      "median_abs_error": 0.7677892329230467,
+      "within_1_point_percent": 62.17008797653959,
+      "n": 341
+    },
+    {
+      "condition": "small input noise perturbation",
+      "mae_readiness_points": 0.9457692191947424,
+      "rmse_readiness_points": 1.2765328519869032,
+      "median_abs_error": 0.7310483480031484,
+      "within_1_point_percent": 62.4633431085044,
+      "n": 341
+    }
+  ],
+  "failure_observatory": [
+    {
+      "participant": "p01",
+      "date": "2020-03-05",
+      "target_date": "2020-03-06",
+      "readiness": 8.0,
+      "target": 2.0,
+      "prior_count": 114,
+      "gap_next_days": 1.0,
+      "prediction": 6.548,
+      "abs_error": 4.548
+    },
+    {
+      "participant": "p06",
+      "date": "2020-03-13",
+      "target_date": "2020-03-14",
+      "readiness": 5.0,
+      "target": 0.0,
+      "prior_count": 130,
+      "gap_next_days": 1.0,
+      "prediction": 4.139,
+      "abs_error": 4.139
+    },
+    {
+      "participant": "p06",
+      "date": "2020-03-14",
+      "target_date": "2020-03-16",
+      "readiness": 0.0,
+      "target": 6.0,
+      "prior_count": 131,
+      "gap_next_days": 2.0,
+      "prediction": 2.34,
+      "abs_error": 3.66
+    },
+    {
+      "participant": "p06",
+      "date": "2020-03-09",
+      "target_date": "2020-03-10",
+      "readiness": 7.0,
+      "target": 2.0,
+      "prior_count": 126,
+      "gap_next_days": 1.0,
+      "prediction": 5.628,
+      "abs_error": 3.628
+    },
+    {
+      "participant": "p13",
+      "date": "2020-02-26",
+      "target_date": "2020-02-27",
+      "readiness": 5.0,
+      "target": 10.0,
+      "prior_count": 60,
+      "gap_next_days": 1.0,
+      "prediction": 6.386,
+      "abs_error": 3.614
+    },
+    {
+      "participant": "p06",
+      "date": "2020-03-08",
+      "target_date": "2020-03-09",
+      "readiness": 3.0,
+      "target": 7.0,
+      "prior_count": 125,
+      "gap_next_days": 1.0,
+      "prediction": 3.49,
+      "abs_error": 3.51
+    },
+    {
+      "participant": "p06",
+      "date": "2020-03-18",
+      "target_date": "2020-03-19",
+      "readiness": 2.0,
+      "target": 6.0,
+      "prior_count": 134,
+      "gap_next_days": 1.0,
+      "prediction": 2.535,
+      "abs_error": 3.465
+    },
+    {
+      "participant": "p11",
+      "date": "2020-03-06",
+      "target_date": "2020-03-07",
+      "readiness": 3.0,
+      "target": 1.0,
+      "prior_count": 99,
+      "gap_next_days": 1.0,
+      "prediction": 4.464,
+      "abs_error": 3.464
+    },
+    {
+      "participant": "p12",
+      "date": "2020-03-17",
+      "target_date": "2020-03-19",
+      "readiness": 1.0,
+      "target": 0.0,
+      "prior_count": 77,
+      "gap_next_days": 2.0,
+      "prediction": 3.371,
+      "abs_error": 3.371
+    },
+    {
+      "participant": "p11",
+      "date": "2020-02-24",
+      "target_date": "2020-02-25",
+      "readiness": 7.0,
+      "target": 3.0,
+      "prior_count": 90,
+      "gap_next_days": 1.0,
+      "prediction": 6.353,
+      "abs_error": 3.353
+    },
+    {
+      "participant": "p13",
+      "date": "2020-02-23",
+      "target_date": "2020-02-24",
+      "readiness": 7.0,
+      "target": 10.0,
+      "prior_count": 58,
+      "gap_next_days": 1.0,
+      "prediction": 6.701,
+      "abs_error": 3.299
+    },
+    {
+      "participant": "p01",
+      "date": "2020-03-14",
+      "target_date": "2020-03-15",
+      "readiness": 8.0,
+      "target": 4.0,
+      "prior_count": 122,
+      "gap_next_days": 1.0,
+      "prediction": 7.244,
+      "abs_error": 3.244
+    }
+  ],
+  "reproducibility": {
+    "runtime_seconds": 1.8667323400004534,
+    "python": "3.13.5",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "random_seed": 42,
+    "command": "python scripts/wellness_validation.py"
+  }
+}

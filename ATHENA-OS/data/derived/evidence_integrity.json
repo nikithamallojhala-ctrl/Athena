@@ -1,0 +1,103 @@
+{
+  "schema": "ATHENA_EVIDENCE_INTEGRITY_v1",
+  "release": "2.4.0",
+  "purpose": "Automated internal consistency and evidence-guardrail verification; not a substitute for peer review, independent replication, or prospective validation.",
+  "checks_passed": 11,
+  "checks_total": 11,
+  "release_blocking_failures": 0,
+  "release_status": "PASS",
+  "checks": [
+    {
+      "name": "NRCD raw-data hash matches manifest",
+      "pass": true,
+      "detail": "Expected 2fdeb707163779bdf00c01d5722474aca02f7b7a7ab1ea1cdbba2a9ab40a234d; file=data/raw/nrcd_v2_joined.csv",
+      "severity": "release"
+    },
+    {
+      "name": "PMData raw-data hashes match manifest",
+      "pass": true,
+      "detail": "All 16 wellness files match recorded SHA-256 hashes.",
+      "severity": "release"
+    },
+    {
+      "name": "Primary held-out result beats personalized baseline",
+      "pass": true,
+      "detail": "ATHENA=3.936260% MAPE; personalized=4.023165% MAPE; delta=-0.086905 points.",
+      "severity": "release"
+    },
+    {
+      "name": "Athlete-cluster bootstrap remains below zero",
+      "pass": true,
+      "detail": "95% athlete-cluster bootstrap interval=[-0.09846178182696937, -0.07533253131727347] MAPE points.",
+      "severity": "release"
+    },
+    {
+      "name": "Athlete-level randomization diagnostic supports direction",
+      "pass": true,
+      "detail": "Equal-athlete sign-flip p=0.00005000 across 3744 athletes.",
+      "severity": "release"
+    },
+    {
+      "name": "Rolling-origin direction is consistent",
+      "pass": true,
+      "detail": "Improved folds=3/3; weighted delta=-0.072531 points.",
+      "severity": "release"
+    },
+    {
+      "name": "Wellness later-period result beats persistence",
+      "pass": true,
+      "detail": "ATHENA=0.944711 MAE; persistence=1.029326 MAE; relative change=-8.220%.",
+      "severity": "release"
+    },
+    {
+      "name": "Wellness result direction survives alternate chronological splits",
+      "pass": true,
+      "detail": "50/25/25: -10.858%; 70/15/15: -7.521%",
+      "severity": "release"
+    },
+    {
+      "name": "Scrambled-target negative control does not create material gain",
+      "pass": true,
+      "detail": "Scrambled-target relative change=-0.127% with calibration blend \u03bb=0.3.",
+      "severity": "release"
+    },
+    {
+      "name": "Small-cohort uncertainty is explicitly preserved",
+      "pass": true,
+      "detail": "Exact participant-level two-sided p=0.207306; interpretation keeps the result non-definitive.",
+      "severity": "integrity"
+    },
+    {
+      "name": "Primary subgroup audit is present",
+      "pass": true,
+      "detail": "10 predefined history/sport/gender subgroup summaries include error, interval coverage, and gate coverage.",
+      "severity": "integrity"
+    }
+  ],
+  "claim_ledger": [
+    {
+      "claim": "2025 performance-domain held-out improvement",
+      "value": "4.023% \u2192 3.936% MAPE",
+      "source": "data/derived/research_results.json#/full_model",
+      "boundary": "Retrospective public-data validation; not prospective proof or a medical claim."
+    },
+    {
+      "claim": "Athlete-level paired randomization diagnostic",
+      "value": "one-sided p=4.99975e-05",
+      "source": "data/derived/research_results.json#/full_model/athlete_randomization_vs_personalized",
+      "boundary": "Diagnostic under sign-exchangeability assumptions; does not establish causality."
+    },
+    {
+      "claim": "PMData next-day wellness replication",
+      "value": "1.029 \u2192 0.945 readiness-points MAE",
+      "source": "data/derived/wellness_results.json#/athena/evaluation",
+      "boundary": "Small observational cohort; promising replication, not medical readiness validation."
+    },
+    {
+      "claim": "PMData exact participant-level uncertainty",
+      "value": "two-sided exact p=0.207",
+      "source": "data/derived/wellness_results.json#/athena/participant_exact_randomization_vs_persistence",
+      "boundary": "Not conventionally significant; ATHENA preserves this limitation instead of hiding it."
+    }
+  ]
+}

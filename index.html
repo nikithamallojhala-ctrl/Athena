@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#07131f" />
+  <meta name="description" content="ATHENA OS — an adaptive, event-aware athlete-state modeling and track & field research platform." />
+  <title>ATHENA OS — Adaptive Athlete-State Intelligence</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/athena-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="ambient-orb orb-a" aria-hidden="true"></div>
+  <div class="ambient-orb orb-b" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#home" aria-label="ATHENA OS home">
+      <img class="brand-logo" src="assets/athena-mark.svg" alt="" />
+      <span class="brand-copy"><strong>ATHENA <em>OS</em></strong><small>Adaptive athlete-state intelligence</small></span>
+    </a>
+    <button class="mobile-menu" id="mobileMenu" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+    <nav id="primaryNav" aria-label="Primary navigation">
+      <a href="#command">Command</a>
+      <a href="#eventlab">Event Lab</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#research">Research</a>
+      <a href="#health">Health + Handoff</a>
+      <a href="#methods">Methods</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn pallas-top-btn" id="pallasTopHint" type="button" title="Pallas is available at the lower right" onclick="document.getElementById('pallasToggle')?.click()">PALLAS</button>
+      <button class="icon-btn guide-btn" id="guideToggle" type="button" aria-controls="guideDrawer" aria-expanded="false" title="Getting started">GUIDE</button>
+      <button class="icon-btn" id="voiceToggle" type="button" aria-pressed="false" title="Voice summaries">VOICE</button>
+      <button class="icon-btn" id="themeToggle" type="button" title="Toggle light/dark theme">◐</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero shell">
+      <div class="hero-copy reveal">
+        <div class="status-line"><span class="status-dot"></span> LOCAL-FIRST · RESEARCH MODE AVAILABLE</div>
+        <p class="eyebrow">DYNAMIC ATHLETE STATE × TRACK & FIELD × RESEARCH</p>
+        <h1>Model the athlete<br><span>as a changing system.</span></h1>
+        <p class="hero-text">ATHENA combines longitudinal history, individual baselines, event demands, current observations, uncertainty, and transparent research evidence—without pretending every signal is equally validated.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#command">Open Command Center</a>
+          <button class="button secondary" id="startGuide" type="button">Guided setup</button>
+          <a class="button ghost" href="#research">Inspect the evidence</a>
+        </div>
+        <div class="trust-row">
+          <span><b>01</b> local athlete data</span>
+          <span><b>02</b> explicit uncertainty</span>
+          <span><b>03</b> reproducible validation</span>
+        </div>
+      </div>
+      <div class="hero-system reveal" aria-label="ATHENA athlete-state engine preview">
+        <div class="hero-console">
+          <div class="console-head"><span>ATHENA STATE ENGINE</span><b>v2.1 · LOCAL</b></div>
+          <div class="state-orbit">
+            <div class="orbit-ring ring-1"></div><div class="orbit-ring ring-2"></div>
+            <div class="hero-score"><strong id="heroStateScore">82</strong><small>STATE</small></div>
+          </div>
+          <div class="hero-state-grid">
+            <div><small>RECOVERY</small><b id="heroRecovery">84</b></div>
+            <div><small>LOAD FIT</small><b id="heroLoad">79</b></div>
+            <div><small>CONFIDENCE</small><b id="heroConfidence">62%</b></div>
+          </div>
+          <p class="console-note">A state estimate is not a diagnosis or medical clearance. ATHENA separates safety rules from experimental modeling.</p>
+        </div>
+        <div class="float-chip chip-a"><small>MODEL HIERARCHY</small><b>5 levels</b></div>
+        <div class="float-chip chip-b"><small>RELAY SEARCH</small><b>24 exact orders</b></div>
+        <div class="float-chip chip-c"><small>PUBLIC VALIDATION</small><b>65K+ sequences</b></div>
+      </div>
+    </section>
+
+    <section class="metrics-ribbon" aria-label="ATHENA project metrics">
+      <div><strong id="metricSamples">65,895</strong><span>longitudinal prediction samples</span></div>
+      <div><strong id="metricAthletes">—</strong><span>public-data athletes represented</span></div>
+      <div><strong>18+</strong><span>track & field disciplines</span></div>
+      <div><strong>24</strong><span>relay orders exactly enumerated</span></div>
+      <div><strong>0</strong><span>athlete health records uploaded by ATHENA</span></div>
+    </section>
+
+    <section id="command" class="shell section-space">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">COMMAND CENTER 2.0</p><h2>One state. Multiple layers of evidence.</h2></div>
+        <p>ATHENA updates a time-dependent athlete state from current observations and local history, then shows what it thinks, why, how confident it is, and when it should abstain.</p>
+      </div>
+
+      <div class="mode-switch reveal" role="group" aria-label="Command Center detail level">
+        <button class="mode-btn active" data-command-mode="athlete">Athlete view</button>
+        <button class="mode-btn" data-command-mode="technical">Technical view</button>
+      </div>
+
+      <div class="command-grid">
+        <article class="panel profile-panel reveal">
+          <div class="panel-head"><div><small>EVENT GENOME 2.0</small><h3>Athlete profile</h3></div><span class="pill">Local only</span></div>
+          <div class="form-grid three-col">
+            <label>Name<input id="athleteName" autocomplete="off" placeholder="Athlete name"></label>
+            <label>Age<input id="athleteAge" type="number" min="13" max="80" value="16"></label>
+            <label>Level<select id="athleteLevel"><option>High school</option><option>Middle school</option><option>Club</option><option>College</option><option>Recreational</option></select></label>
+            <label>Primary event<select id="primaryEvent" class="event-select"></select></label>
+            <label>Secondary event<select id="secondaryEvent" class="event-select"></select></label>
+            <label>Baseline resting pulse<div class="input-suffix"><input id="baselineHr" type="number" min="35" max="130" value="68"><span>bpm</span></div></label>
+          </div>
+          <div id="eventDemandViz" class="demand-viz" aria-label="Event demand profile"></div>
+          <div class="button-row"><button id="saveProfile" class="button secondary" type="button">Save profile</button><button id="exportAthleteData" class="button ghost" type="button">Export my local data</button></div>
+        </article>
+
+        <article class="panel state-panel reveal">
+          <div class="panel-head"><div><small>DYNAMIC ATHLETE-STATE ENGINE</small><h3>Current state estimate</h3></div><span id="stateVersion" class="pill accent">STATE v2.1</span></div>
+          <div class="state-overview">
+            <div class="score-ring" id="readinessRing" style="--score:78"><div><strong id="readinessScore">78</strong><small id="readinessLabel">PROVISIONAL</small></div></div>
+            <div class="state-copy"><p id="readinessSummary" class="lead-insight">Complete the check-in to update today’s state.</p><div class="best-fit" id="bestFit"><small>BEST-FIT SESSION</small><b>Controlled quality</b></div><div class="confidence-line"><span>Confidence</span><div class="mini-meter"><i id="confidenceFill"></i></div><b id="confidenceText">—</b></div></div>
+          </div>
+          <div id="stateDimensions" class="state-dimensions"></div>
+          <div id="stateFlags" class="state-flags"></div>
+          <details class="technical-details command-technical"><summary>How the state update works</summary><div id="stateMethodExplain" class="method-explain"></div></details>
+        </article>
+
+        <article class="panel checkin-panel reveal">
+          <div class="panel-head"><div><small>OBSERVATION UPDATE</small><h3>Daily check-in</h3></div><span id="eventBias" class="pill">Event-aware</span></div>
+          <div class="input-grid">
+            <label>Sleep <output id="sleepOut">8.0 h</output><input id="sleep" type="range" min="4" max="11" step="0.1" value="8"></label>
+            <label>Energy <output id="energyOut">7 / 10</output><input id="energy" type="range" min="0" max="10" value="7"></label>
+            <label>Soreness <output id="sorenessOut">3 / 10</output><input id="soreness" type="range" min="0" max="10" value="3"></label>
+            <label>Stress <output id="stressOut">3 / 10</output><input id="stress" type="range" min="0" max="10" value="3"></label>
+            <label>Hydration<select id="hydration"><option value="1">Well hydrated</option><option value="0.78">Mostly hydrated</option><option value="0.5">Behind today</option><option value="0.25">Very low</option></select></label>
+            <label>Resting pulse<div class="input-suffix"><input id="restingHr" type="number" min="35" max="160" value="68"><span>bpm</span></div></label>
+            <label>Yesterday’s effort <output id="loadOut">5 / 10</output><input id="load" type="range" min="0" max="10" value="5"></label>
+            <label>Health flag<select id="healthFlag"><option value="none">No major concern</option><option value="pain">New/worsening pain</option><option value="illness">Feeling ill / feverish</option><option value="breathing">Breathing concern</option><option value="head">Head impact / concussion concern</option><option value="chest">Chest pain / fainting concern</option></select></label>
+          </div>
+          <div id="factorGrid" class="factor-grid"></div>
+          <div id="recommendations" class="recommendations"></div>
+          <div class="button-row"><button class="button primary" id="saveCheckin" type="button">Save state update</button><button class="button ghost" id="speakSummary" type="button">Hear summary</button></div>
+        </article>
+
+        <article class="panel session-panel reveal">
+          <div class="panel-head"><div><small>SESSION COMPATIBILITY 2.0</small><h3>Pressure-test the plan</h3></div><span class="pill">State + safety</span></div>
+          <div class="form-grid two-col">
+            <label>Planned session<select id="plannedSession"><option value="speed">Speed / acceleration</option><option value="speedend">Speed endurance</option><option value="tempo">Tempo / threshold</option><option value="distance">Long aerobic work</option><option value="hurdles">Hurdle rhythm</option><option value="jumps">Jump technique</option><option value="throws">Throw technique</option><option value="strength">Strength training</option><option value="recovery">Recovery / mobility</option></select></label>
+            <label>Intensity <output id="intensityOut">7 / 10</output><input id="sessionIntensity" type="range" min="1" max="10" value="7"></label>
+            <label>Duration<div class="input-suffix"><input id="sessionDuration" type="number" min="10" max="240" value="75"><span>min</span></div></label>
+            <label>Outdoor temperature<div class="input-suffix"><input id="sessionTemp" type="number" min="20" max="120" value="78"><span>°F</span></div></label>
+          </div>
+          <div class="compatibility-meter"><div id="compatibilityFill"></div></div>
+          <div class="compatibility-result"><strong id="compatibilityScore">—</strong><div><b id="compatibilityLabel">Waiting for state</b><p id="compatibilityText"></p></div></div>
+          <div class="baseline-compare"><span>Transparent baseline <b id="compatBaseline">—</b></span><span>State-aware <b id="compatState">—</b></span><span>Uncertainty <b id="compatUncertainty">—</b></span></div>
+          <div id="sessionAdjustments" class="adjustment-list"></div>
+        </article>
+
+        <article class="panel trajectory-panel reveal wide-panel">
+          <div class="panel-head"><div><small>STATE TRAJECTORY</small><h3>Longitudinal history</h3></div><div class="panel-actions"><button id="seedDemoHistory" class="text-btn" type="button">Demo history</button><button id="clearHistory" class="text-btn danger-text" type="button">Reset</button></div></div>
+          <div class="chart-wrap"><canvas id="trendChart" width="1100" height="330" aria-label="Athlete state trajectory"></canvas></div>
+          <p id="chartEmpty" class="empty-state">Save check-ins to build an athlete-specific trajectory.</p>
+          <div id="trajectoryStats" class="trajectory-stats"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="eventlab" class="shell section-space">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">UNIVERSAL EVENT LAB</p><h2>Every tool survives. Every tool gets sharper.</h2></div>
+        <p>Deterministic event tools remain transparent calculators and logs. They connect to athlete history where appropriate, but they are not mislabeled as learned AI.</p>
+      </div>
+      <div class="lab-tabs reveal" role="tablist" aria-label="Event lab tools">
+        <button class="lab-tab active" data-pane="sprints">Sprint Architect</button>
+        <button class="lab-tab" data-pane="hurdles">Rhythm Engine</button>
+        <button class="lab-tab" data-pane="distance">Pace Matrix</button>
+        <button class="lab-tab" data-pane="jumps">Flight Log</button>
+        <button class="lab-tab" data-pane="throws">Throw Vault</button>
+        <button class="lab-tab" data-pane="relays">Relay Intelligence</button>
+      </div>
+
+      <div class="lab-pane active" id="pane-sprints">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>SPRINT ARCHITECT 2.0</small><h3>Race-phase blueprint</h3></div><span class="pill">Transparent math</span></div><div class="form-grid three-col"><label>Event<select id="sprintEvent"><option value="60">60m</option><option value="100" selected>100m</option><option value="200">200m</option><option value="400">400m</option></select></label><label>Goal time<input id="sprintGoal" type="number" step=".01" value="12.50"></label><label>Race strength<select id="sprintStrength"><option value="start">Start / acceleration</option><option value="transition">Transition</option><option value="max" selected>Max velocity</option><option value="finish">Finish / speed endurance</option></select></label></div><button class="button secondary" id="buildSprintPlan">Build blueprint</button><div id="sprintBlueprint" class="blueprint"></div></article>
+      </div>
+      <div class="lab-pane" id="pane-hurdles">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>RHYTHM ENGINE 2.0</small><h3>Hurdle rhythm model</h3></div><span class="pill">Event-specific</span></div><div class="form-grid three-col"><label>Event<select id="hurdleEvent"><option value="60H">60m hurdles</option><option value="100H">100m hurdles</option><option value="110H" selected>110m hurdles</option><option value="400H">400m hurdles</option></select></label><label>Goal time<input id="hurdleGoal" type="number" step=".01" value="16.00"></label><label>Start/finish allowance<select id="hurdleAllowance"><option value="0.28">Balanced</option><option value="0.32">More start/finish time</option><option value="0.23">More mid-race rhythm emphasis</option></select></label></div><button class="button secondary" id="buildHurdlePlan">Build rhythm model</button><div id="hurdleBlueprint" class="blueprint"></div></article>
+      </div>
+      <div class="lab-pane" id="pane-distance">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>PACE MATRIX 2.0</small><h3>Goal splits + strategy</h3></div><span class="pill">Strategy-aware</span></div><div class="form-grid three-col"><label>Event<select id="distanceEvent"><option value="800">800m</option><option value="1500">1500m</option><option value="1600">1600m</option><option value="3200">3200m</option><option value="5000" selected>5000m</option></select></label><label>Goal time<input id="distanceGoal" value="18:30"></label><label>Strategy<select id="distanceStrategy"><option value="even">Even</option><option value="negative" selected>Controlled → negative</option><option value="positive">Fast start → controlled</option></select></label></div><button class="button secondary" id="buildPacePlan">Build pace matrix</button><div id="distanceBlueprint" class="blueprint"></div></article>
+      </div>
+      <div class="lab-pane" id="pane-jumps">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>FLIGHT LOG 2.0</small><h3>Jump series + longitudinal consistency</h3></div><button id="resetJumps" class="text-btn">Reset</button></div><div class="form-grid three-col"><label>Event<select id="jumpEvent"><option>Long Jump</option><option>Triple Jump</option><option>High Jump</option><option>Pole Vault</option></select></label><label>Mark (m)<input id="jumpMark" type="number" step=".01" placeholder="5.82"></label><label class="check-label"><input id="jumpFoul" type="checkbox"> Foul / miss</label></div><div class="button-row"><button id="addJump" class="button secondary">Add attempt</button><button id="exportJumps" class="button ghost">Export series</button></div><div id="jumpStats" class="attempt-stats"></div><div id="jumpSeries" class="attempt-series"></div><div id="jumpTrend" class="mini-analysis"></div></article>
+      </div>
+      <div class="lab-pane" id="pane-throws">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>THROW VAULT 2.0</small><h3>Throw series + consistency</h3></div><button id="resetThrows" class="text-btn">Reset</button></div><div class="form-grid three-col"><label>Event<select id="throwEvent"><option>Shot Put</option><option>Discus</option><option>Javelin</option><option>Hammer</option></select></label><label>Mark (m)<input id="throwMark" type="number" step=".01" placeholder="12.40"></label><label class="check-label"><input id="throwFoul" type="checkbox"> Foul</label></div><div class="button-row"><button id="addThrow" class="button secondary">Add attempt</button><button id="exportThrows" class="button ghost">Export series</button></div><div id="throwStats" class="attempt-stats"></div><div id="throwSeries" class="attempt-series"></div><div id="throwTrend" class="mini-analysis"></div></article>
+      </div>
+      <div class="lab-pane" id="pane-relays">
+        <article class="panel tool-panel"><div class="panel-head"><div><small>RELAY INTELLIGENCE 2.0</small><h3>Exact ordering + sensitivity</h3></div><span class="pill accent">All 24 orders</span></div><label class="standalone-label">Relay<select id="relayEvent"><option value="4x100">4×100m</option><option value="4x200">4×200m</option><option value="4x400" selected>4×400m</option><option value="4x800">4×800m</option></select></label><div id="relayAthletes" class="relay-athletes"></div><button id="optimizeRelay" class="button primary">Evaluate all 24 orders</button><div id="relayResults" class="relay-results"></div><div id="relaySensitivity" class="sensitivity-panel"></div><details class="technical-details"><summary>Optimization formulation</summary><div id="relayMath" class="method-explain"></div></details></article>
+      </div>
+    </section>
+
+    <section id="intelligence" class="shell section-space">
+      <div class="section-heading reveal"><div><p class="eyebrow">ATHENA INTELLIGENCE</p><h2>Why, what-if, and when not to trust it.</h2></div><p>The intelligence layer exposes state contributions, counterfactual scenarios, model disagreement, and abstention instead of hiding decisions behind one number.</p></div>
+      <div class="intelligence-grid">
+        <article class="panel reveal"><div class="panel-head"><div><small>EXPLAINABILITY</small><h3>Why does ATHENA think this?</h3></div><span class="pill">Local model</span></div><div id="explainabilityBars" class="explain-bars"></div><p class="fine-print">Contributions describe ATHENA’s current state formula; they are not causal medical effects.</p></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>COUNTERFACTUAL LAB</small><h3>Change one scenario</h3></div><span class="pill">Model-based</span></div><div class="counter-grid"><label>Sleep <output id="cfSleepOut">8.0h</output><input id="cfSleep" type="range" min="4" max="11" step=".1" value="8"></label><label>Stress <output id="cfStressOut">3/10</output><input id="cfStress" type="range" min="0" max="10" value="3"></label><label>Soreness <output id="cfSorenessOut">3/10</output><input id="cfSoreness" type="range" min="0" max="10" value="3"></label><label>Session intensity <output id="cfIntensityOut">7/10</output><input id="cfIntensity" type="range" min="1" max="10" value="7"></label></div><div id="counterfactualCompare" class="scenario-compare"></div><p class="fine-print">What-if outputs show how the model changes under edited inputs; they do not prove that changing an input will cause the predicted outcome.</p></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>MODEL PROVENANCE</small><h3>Output trace</h3></div><span class="pill accent">Traceable</span></div><div id="provenanceCard" class="provenance-card"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>ABSTENTION</small><h3>ATHENA can say “not enough evidence.”</h3></div></div><div id="abstentionCard" class="abstention-card"></div></article>
+        <article class="panel reveal performance-log-panel" id="performanceLog"><div class="panel-head"><div><small>PERSONAL PERFORMANCE LOG</small><h3>Give Pallas real history to compare.</h3></div><span class="pill">Local only</span></div><p>Save timed running results in this browser. Pallas can then answer questions such as “Was my latest 100m faster than my usual?” without guessing.</p><form id="performanceForm"><div class="form-grid four-col"><label>Date<input id="performanceDate" type="date" required></label><label>Event<select id="performanceEvent"></select></label><label>Result<input id="performanceResult" required placeholder="12.45 or 2:04.20"></label><label>Context<input id="performanceContext" placeholder="meet, surface, workout — optional"></label></div><div class="button-row"><button class="button secondary" type="submit">Save result</button><button class="button ghost" id="exportPerformance" type="button">Export CSV</button></div></form><div id="performanceStats" class="performance-stats"></div><div id="performanceHistory" class="performance-history"></div></article>
+      </div>
+    </section>
+
+    <section id="research" class="shell section-space research-section">
+      <div class="section-heading reveal"><div><p class="eyebrow">RESEARCH STUDIO 2.0</p><h2>Evidence you can interrogate.</h2></div><p>ATHENA now exposes two reproducible real-world public-data validation tracks—performance and wellness—plus explicit boundaries, baselines, failures, abstention, and an automated evidence-integrity ledger instead of collapsing incompatible datasets into one claim.</p></div>
+      <div class="research-banner reveal" id="researchBanner"><div><span class="status-dot"></span><b>Loading research artifact…</b></div></div>
+
+      <div class="research-grid">
+        <article class="panel reveal research-summary"><div class="panel-head"><div><small>PRIMARY EXPERIMENT</small><h3>Next-race performance prediction</h3></div><span class="pill accent">NRCD v2.0.0</span></div><p id="researchQuestionText" class="lead-insight"></p><div id="researchMetricCards" class="metric-cards"></div><div id="claimBoundary" class="boundary-box"></div></article>
+        <article class="panel reveal wellness-evidence-panel"><div class="panel-head"><div><small>SECOND VALIDATION DOMAIN</small><h3>Next-day wellness/readiness</h3></div><span class="pill success-pill">PMData · reanalyzed</span></div><p id="wellnessQuestionText" class="lead-insight">Loading the independent wellness validation artifact…</p><div id="wellnessMetricCards" class="metric-cards"></div><div id="wellnessValidation" class="boundary-box"></div><details class="technical-details"><summary>Wellness model hierarchy + external-user test</summary><div id="wellnessModelHierarchy" class="model-table"></div><div id="wellnessExternal" class="mini-analysis"></div></details><div id="wellnessEvidence" class="evidence-stack"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>MODEL HIERARCHY</small><h3>Complexity must earn itself</h3></div></div><div id="modelHierarchy" class="model-table"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>ROLLING VALIDATION</small><h3>Temporal folds</h3></div><span id="foldBadge" class="pill">—</span></div><div id="rollingValidation" class="fold-grid"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>UNCERTAINTY + CALIBRATION</small><h3>Trust region & intervals</h3></div></div><div id="calibrationView" class="calibration-view"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>ABLATION MATRIX</small><h3>What actually matters?</h3></div></div><div id="ablationView" class="bar-list"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>ROBUSTNESS</small><h3>Stress tests</h3></div></div><div id="robustnessView" class="bar-list"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>EXPERIMENT MATRIX</small><h3>Hierarchy · ablations · stress · folds</h3></div><span class="pill">Automated</span></div><div id="experimentMatrix" class="experiment-matrix"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>COMPLEXITY × BENEFIT</small><h3>Does sophistication earn its cost?</h3></div></div><div id="complexityBenefit" class="model-table"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>SCIENTIFIC DISCOVERY</small><h3>What the experiment taught us</h3></div><span class="pill">Exploratory</span></div><div id="discoveryView" class="discovery-list"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>FAILURE OBSERVATORY</small><h3>Largest errors, not hidden</h3></div><button id="cycleFailure" class="text-btn">Next case</button></div><div id="failureView" class="failure-view"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>FAILURE TAXONOMY</small><h3>How the model breaks</h3></div><span class="pill">No filtering</span></div><div id="failureTaxonomy" class="failure-taxonomy"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>RETROSPECTIVE REPLAY</small><h3>Pre-race information → archived outcome</h3></div><span class="pill">Anonymized public data</span></div><div id="replayView" class="replay-view"></div><button id="nextReplay" class="button ghost">Load another held-out replay</button></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>FAIL → DIAGNOSE → RETEST</small><h3>Model iteration record</h3></div></div><div id="failureIteration" class="iteration-flow"></div></article>
+      </div>
+
+      <div class="subsection-title reveal"><p class="eyebrow">EXPERIMENT LAB</p><h3>Build a traceable research protocol.</h3></div>
+      <div class="experiment-grid">
+        <article class="panel reveal">
+          <form id="experimentForm">
+            <div class="form-grid two-col">
+              <label>Research question<textarea id="experimentQuestion">Can ATHENA's dynamic athlete-state model improve prediction over a personalized baseline?</textarea></label>
+              <label>Hypothesis<textarea id="experimentHypothesis">Dynamic correction will reduce prediction error in calibrated event/history trust regions while abstaining elsewhere.</textarea></label>
+              <label>Dataset<select id="experimentDataset"><option>NRCD v2.0.0 — public longitudinal running results</option><option>Manual N-of-1 local observations</option></select></label>
+              <label>Target<input id="experimentTarget" value="Next performance (seconds)"></label>
+              <label>Feature set<select id="experimentFeatures"><option>Dynamic + personalized + event context</option><option>Personalized only</option><option>Temporal only</option><option>Custom / documented</option></select></label>
+              <label>Evaluation<select id="experimentEvaluation"><option>Rolling-origin temporal validation</option><option>N-of-1 descriptive trend</option></select></label>
+            </div>
+            <div class="button-row"><button class="button primary" type="submit">Register experiment</button><button class="button ghost" type="button" id="runPublicExperiment">Load reproducible public result</button><button class="button ghost" type="button" id="exportExperiment">Export manifest</button></div>
+          </form>
+        </article>
+        <article class="panel reveal"><div class="panel-head"><div><small>RESEARCH GRAPH</small><h3>Question → data → method → result → conclusion</h3></div></div><div id="researchGraph" class="research-graph"></div><div id="experimentHistory" class="experiment-history"></div></article>
+      </div>
+
+      <div class="subsection-title reveal"><p class="eyebrow">N-OF-1 WORKSPACE</p><h3>Keep the original manual research workflow.</h3></div>
+      <div class="experiment-grid">
+        <article class="panel reveal"><form id="researchForm"><div class="form-grid two-col"><label>Question<textarea id="researchQuestion" required placeholder="Does a consistent warm-up routine change my first-rep quality?"></textarea></label><label>Independent variable<input id="researchIV" required placeholder="Warm-up routine"></label><label>Outcome metric<input id="researchMetric" required placeholder="First-rep time / rating"></label><label>Duration (days)<input id="researchDays" type="number" min="3" max="90" value="14"></label><label>Safety boundary<input id="researchSafety" required value="Stop if pain, illness, or safety concern appears"></label><label>Protocol<textarea id="researchPlan" placeholder="Keep time, surface, and measurement method as consistent as practical."></textarea></label></div><button class="button secondary">Save N-of-1 protocol</button></form><div id="protocolCard" class="protocol-card empty-state">Create a protocol to begin.</div></article>
+        <article class="panel reveal"><form id="observationForm"><div class="form-grid three-col"><label>Date<input id="observationDate" type="date" required></label><label>Value<input id="observationValue" type="number" step="any" required></label><label>Note<input id="observationNote" placeholder="Context"></label></div><button class="button secondary">Add observation</button></form><div class="chart-wrap small"><canvas id="researchChart" width="700" height="220"></canvas></div><div id="observationList" class="observation-list"></div><button id="exportResearch" class="button ghost">Export N-of-1 CSV</button></article>
+      </div>
+
+      <div class="subsection-title reveal"><p class="eyebrow">PROSPECTIVE VALIDATION MODE</p><h3>Pre-register first. Collect future observations second. No retroactive goalpost moving.</h3></div>
+      <div class="prospective-grid">
+        <article class="panel reveal prospective-protocol-panel">
+          <div class="panel-head"><div><small>LOCKED PROTOCOL</small><h3>Future-data validation setup</h3></div><span id="prospectiveStatusPill" class="pill">Not registered</span></div>
+          <form id="prospectiveProtocolForm">
+            <div class="form-grid two-col">
+              <label>Primary target<select id="prospectiveTarget"><option value="session_quality">Next-session quality (0–10)</option></select></label>
+              <label>Minimum observations<input id="prospectiveMinimum" type="number" min="20" max="120" value="30"></label>
+              <label>Start date<input id="prospectiveStart" type="date" required></label>
+              <label>Analysis plan<select id="prospectiveAnalysis"><option value="temporal_split">Locked 60/40 temporal calibration → evaluation</option></select></label>
+              <label class="wide-label">Hypothesis<textarea id="prospectiveHypothesis">Higher pre-session ATHENA state scores will be associated with higher next-session quality, and a simple calibration-period state model will improve evaluation MAE over a calibration-mean baseline.</textarea></label>
+              <label class="wide-label">Boundary<textarea id="prospectiveBoundary">Observational planning research only. No medical diagnosis, clearance, injury-prevention claim, or training mandate. Formal studies involving other participants require appropriate supervision and approvals.</textarea></label>
+            </div>
+            <label class="check-label protocol-ack"><input id="prospectiveAck" type="checkbox" required> I understand this locks the protocol version; results cannot be claimed until enough future observations exist.</label>
+            <div class="button-row"><button id="lockProspective" class="button primary" type="submit">Lock prospective protocol</button><button id="resetProspective" class="button ghost" type="button">Start a new protocol version</button></div>
+          </form>
+          <div id="prospectiveProtocolCard" class="protocol-card empty-state">Register a protocol before collecting prospective validation records.</div>
+        </article>
+        <article class="panel reveal">
+          <div class="panel-head"><div><small>FUTURE OBSERVATIONS</small><h3>Capture without backfilling</h3></div><span class="pill">Local only</span></div>
+          <form id="prospectiveObservationForm">
+            <div class="form-grid three-col">
+              <label>Date<input id="prospectiveDate" type="date" required></label>
+              <label>Pre-session state<input id="prospectiveState" type="number" min="0" max="100" readonly></label>
+              <label>Session quality<input id="prospectiveQuality" type="number" min="0" max="10" step="0.1" required placeholder="0–10"></label>
+              <label>Session type<input id="prospectiveSession" placeholder="e.g., speed, tempo"></label>
+              <label class="wide-label">Context note<input id="prospectiveNote" placeholder="Surface, weather, unusual context — optional"></label>
+            </div>
+            <button class="button secondary" type="submit">Add future observation</button>
+          </form>
+          <div id="prospectiveProgress" class="prospective-progress"></div>
+          <div id="prospectiveResult" class="boundary-box">No result yet. ATHENA will not analyze a prospective protocol before its locked minimum-data gate is satisfied.</div>
+          <div class="button-row"><button id="exportProspective" class="button ghost" type="button">Export prospective study</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="health" class="shell section-space">
+      <div class="section-heading reveal"><div><p class="eyebrow">HEALTH HUB + SBAR</p><h2>Conservative safety support, separated from prediction.</h2></div><p>ATHENA provides educational references and structured communication. It does not diagnose, clear participation, or promise injury prevention.</p></div>
+      <div class="health-grid">
+        <article class="panel reveal"><div class="panel-head"><div><small>HEAT AWARENESS</small><h3>Heat Index context</h3></div><span class="pill">Not WBGT</span></div><div class="form-grid two-col"><label>Air temperature<div class="input-suffix"><input id="heatTemp" type="number" value="88" min="40" max="130"><span>°F</span></div></label><label>Relative humidity<div class="input-suffix"><input id="heatHumidity" type="number" value="60" min="0" max="100"><span>%</span></div></label><label>Planned duration<div class="input-suffix"><input id="heatDuration" type="number" value="60" min="5" max="240"><span>min</span></div></label><label>Intensity<select id="heatIntensity"><option value="1">Easy</option><option value="2">Moderate</option><option value="3" selected>Hard</option></select></label></div><div id="heatResult" class="health-result"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>CARDIO EDUCATION</small><h3>General target-heart-rate guide</h3></div><span class="pill">Educational</span></div><label>Age<input id="heartAge" type="number" min="13" max="80" value="16"></label><div class="heart-stats"><div><small>EST. MAX</small><b id="maxHr">—</b></div><div><small>MODERATE</small><b id="moderateHr">—</b></div><div><small>VIGOROUS</small><b id="vigorousHr">—</b></div></div><p class="fine-print">Uses the common 220 − age estimate and AHA percentage ranges; individual responses vary.</p></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>SLEEP BANK</small><h3>Seven-night pattern</h3></div><button id="resetSleep" class="text-btn">Reset</button></div><div id="sleepWeek" class="sleep-week"></div><div id="sleepSummary" class="health-result"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>SAFETY SIGNALS</small><h3>When modeling stops</h3></div><span class="pill danger-pill">Safety override</span></div><div class="concern-tabs"><button class="concern active" data-concern="heat">Heat</button><button class="concern" data-concern="head">Head impact</button><button class="concern" data-concern="breathing">Breathing</button><button class="concern" data-concern="cardiac">Chest / fainting</button><button class="concern" data-concern="injury">Serious injury</button></div><div id="concernContent" class="concern-content"></div></article>
+      </div>
+
+      <div id="handoff" class="handoff-wrap reveal">
+        <div class="subsection-title"><p class="eyebrow">SBAR HANDOFF 2.0</p><h3>Turn observations into a clear request for adult/clinical assessment.</h3></div>
+        <div class="handoff-grid">
+          <article class="panel"><form id="handoffForm"><div class="form-grid two-col"><label>Athlete name<input id="handoffName" placeholder="Name"></label><label>Activity / event<input id="handoffEvent" placeholder="e.g., 400m practice"></label><label>Situation<textarea id="handoffSituation" required placeholder="What happened?"></textarea></label><label>Onset<input id="handoffOnset" placeholder="e.g., 10 minutes ago"></label><label>Relevant background<textarea id="handoffBackground" placeholder="Known conditions, recent illness, prior injury if relevant"></textarea></label><label>Current status<select id="handoffStatus"><option>Alert and talking normally</option><option>Confused or acting unusually</option><option>Breathing is difficult</option><option>Fainted / lost consciousness</option><option>Repeated vomiting</option><option>Unable to continue because of pain</option></select></label><label>Pain / discomfort <output id="painOut">3 / 10</output><input id="handoffPain" type="range" min="0" max="10" value="3"></label><label>Actions already taken<textarea id="handoffActions" placeholder="Stopped activity, moved to shade, etc."></textarea></label><label>Request<select id="handoffRequest"><option>Please assess now</option><option>Please advise next steps</option><option>Please contact parent/guardian</option><option>Please activate emergency response</option></select></label></div><fieldset><legend>Reported symptoms</legend><div id="symptomGrid" class="symptom-grid"></div></fieldset><div id="handoffCompleteness" class="completeness-line"></div><button class="button primary">Build SBAR handoff</button></form></article>
+          <article class="panel handoff-output"><div id="urgentBanner" class="urgent-banner hidden"></div><div class="panel-head"><div><small>STRUCTURED NOTE</small><h3>SBAR output</h3></div></div><div id="handoffNote" class="handoff-note"></div><div class="button-row"><button id="copyHandoff" class="button ghost">Copy</button><button id="printHandoff" class="button ghost">Print</button></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" class="shell section-space methods-section">
+      <div class="section-heading reveal"><div><p class="eyebrow">DATA + METHODS</p><h2>The technical layer is part of the product.</h2></div><p>ATHENA exposes its formal state representation, model hierarchy, dataset provenance, reproducibility manifest, limitations, and feasibility instead of asking reviewers to trust marketing language.</p></div>
+      <div class="methods-grid">
+        <article class="panel reveal"><div class="panel-head"><div><small>MATHEMATICAL CORE</small><h3>Dynamic state formulation</h3></div></div><div class="equation-card"><code>zₜ = λₜ zₜ₋₁ + (1 − λₜ) f(xₜ, cₜ)</code><span>state update</span></div><div class="equation-card"><code>ŷₜ₊₁ = bᵢ,ₑ + g(zₜ, cₜ)</code><span>personal baseline + learned correction</span></div><div class="equation-card"><code>g = 0 outside calibrated trust region</code><span>abstention / fallback</span></div><p>Full definitions and assumptions are in <code>docs/MATHEMATICAL_METHODS.md</code>.</p></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>DATASET REGISTRY</small><h3>What each dataset can—and cannot—support</h3></div></div><div id="datasetRegistry" class="dataset-registry"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>DATA QUALITY</small><h3>Missingness + cleaning are visible</h3></div><span class="pill">Auditable</span></div><div id="dataQualityView" class="data-quality-view"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>REPRODUCIBILITY</small><h3>Experiment manifest</h3></div><span class="pill accent">Re-runnable</span></div><div id="reproManifest" class="provenance-card"></div><button id="downloadResearchJson" class="button ghost">Export research result JSON</button></article>
+        <article class="panel reveal evidence-integrity-panel"><div class="panel-head"><div><small>EVIDENCE INTEGRITY</small><h3>Claims must match the artifacts</h3></div><span class="pill success-pill">Automated verifier</span></div><div id="integrityMetricCards" class="metric-cards"></div><div id="integrityView" class="integrity-view"><p class="empty-state">Loading evidence-integrity ledger…</p></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>NOVELTY BOUNDARY</small><h3>What ATHENA claims</h3></div></div><div class="novelty-box"><b>Working contribution</b><p>ATHENA integrates individual baselines, temporal residual correction, an evidence gate with fallback/abstention, event context, transparent athlete tools, and a reproducible public-data evaluation layer in one local-first research platform.</p><b>Explicit boundary</b><p>ATHENA does <em>not</em> claim to be the first dynamic athlete-state model. It also does not claim clinical validation, guaranteed injury prevention, universal superiority, or causal effects of daily wellness inputs. PMData now provides a separate predictive validation of the wellness-state mechanism, not a medical claim.</p></div></article>
+        <article class="panel reveal feasibility-panel"><div class="panel-head"><div><small>FEASIBILITY ENGINEERING</small><h3>Designed to be semester-realistic</h3></div><span class="pill success-pill">No paid compute required</span></div><div class="feasibility-grid"><div><strong>Static deployment</strong><span>GitHub Pages / local server</span></div><div><strong>Validation data</strong><span>Open NRCD + PMData artifacts</span></div><div><strong>Core experiments</strong><span>Two narrow, defined targets</span></div><div><strong>Compute</strong><span id="feasibilityRuntime">CPU-only · measured at build time</span></div><div><strong>Validation</strong><span>Automated pipeline + tests</span></div><div><strong>Fallbacks</strong><span>Abstain instead of fabricate</span></div></div><div id="feasibilityTimeline" class="timeline-mini"></div></article>
+        <article class="panel reveal"><div class="panel-head"><div><small>QUANTUM INVESTIGATION</small><h3>Why ATHENA does not fake “quantum AI”</h3></div><span class="pill">Conditional closed</span></div><p>Relay ordering is a real assignment problem, but with four fixed athletes ATHENA can enumerate all 4! = 24 orders exactly. A quantum layer would add complexity without a measurable benefit at this scale.</p><p class="fine-print">The binary assignment/QUBO formulation and scaling discussion are documented in <code>docs/QUANTUM_OPTIMIZATION_NOTE.md</code>.</p></article>
+      </div>
+    </section>
+
+    <section id="about" class="shell section-space founders-section">
+      <div class="section-heading reveal"><div><p class="eyebrow">ABOUT ATHENA</p><h2>Built as a 50/50 collaboration.</h2></div><p>ATHENA is co-founded and co-developed equally by Nikitha Mallojhala and Shriyan Avadhanula. Founder photos are intentionally local project assets, not remote trackers.</p></div>
+      <div class="founder-grid">
+        <article class="founder-card panel reveal">
+          <div class="founder-head"><div class="founder-avatar"><span>NM</span><img src="assets/founders/nikitha.jpg" alt="Nikitha Mallojhala" onerror="this.hidden=true"></div><div><p class="eyebrow">CO-FOUNDER · 50%</p><h3>Nikitha Mallojhala</h3><p>Co-Founder & Co-Lead Developer</p></div></div>
+          <p>Equal responsibility across product strategy, research direction, engineering, UX, testing, documentation, and responsible athlete-safety framing.</p>
+        </article>
+        <article class="founder-card panel reveal">
+          <div class="founder-head"><div class="founder-avatar"><span>SA</span><img src="assets/founders/shriyan.jpg" alt="Shriyan Avadhanula" onerror="this.hidden=true"></div><div><p class="eyebrow">CO-FOUNDER · 50%</p><h3>Shriyan Avadhanula</h3><p>Co-Founder & Co-Lead Developer</p></div></div>
+          <p>Equal responsibility across product strategy, research direction, engineering, UX, testing, documentation, and responsible athlete-safety framing.</p>
+        </article>
+      </div>
+      <div class="about-grid">
+        <article class="panel reveal"><small>PRIVACY</small><h3>Local-first, precisely stated.</h3><p>Athlete profiles, check-ins, logs, and N-of-1 observations are stored in the browser's local storage on that device. Local storage is not the same as encrypted medical-record storage; ATHENA makes no such claim.</p><div class="button-row"><button id="resetLocalData" class="button danger-button">Delete all ATHENA local data</button></div></article>
+        <article class="panel reveal"><small>BUILD PHILOSOPHY</small><h3>Evidence over buzzwords.</h3><p>ATHENA keeps deterministic calculators deterministic, learned research models learned, safety rules separate, uncertainty visible, and unsupported technologies out of the product.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div class="footer-brand"><img src="assets/athena-mark.svg" alt=""><div><strong>ATHENA OS</strong><span>Adaptive, event-aware athlete-state modeling.</span></div></div>
+    <div><p>Research prototype · Educational use · Not medical diagnosis or clearance.</p><p class="source-credit">Data/evidence credit: <a href="https://github.com/National-Running-Club-Database/national_running_club_database_public_dataset" target="_blank" rel="noopener noreferrer">NRCD</a> · <a href="https://doi.org/10.5281/zenodo.10033832" target="_blank" rel="noopener noreferrer">SoccerMon</a> · <a href="https://datasets.simula.no/pmdata/" target="_blank" rel="noopener noreferrer">PMData</a> · <a href="https://doi.org/10.5281/zenodo.16937033" target="_blank" rel="noopener noreferrer">REST</a> · <a href="https://physionet.org/content/treadmill-exercise-cardioresp/1.0.1/" target="_blank" rel="noopener noreferrer">PhysioNet treadmill tests</a>. Full attribution in <code>docs/SOURCES.md</code>.</p></div>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+
+  <div id="guideBackdrop" class="guide-backdrop" hidden></div>
+  <aside id="guideDrawer" class="guide-drawer" aria-hidden="true" aria-labelledby="guideTitle">
+    <div class="guide-head"><div><p class="eyebrow">GETTING STARTED</p><h2 id="guideTitle">Use ATHENA in six steps.</h2></div><button id="closeGuide" class="icon-btn" type="button" aria-label="Close getting started guide">×</button></div>
+    <ol class="guide-steps">
+      <li><b>Set your athlete profile.</b><span>Choose your primary event and save a baseline resting pulse. ATHENA adapts event demand without changing the safety boundary.</span><a href="#command" data-guide-link>Go to profile →</a></li>
+      <li><b>Complete today’s check-in.</b><span>Use the sliders as observations, not a test you need to “pass.” If history is sparse, ATHENA shows a provisional state instead of pretending certainty.</span><a href="#command" data-guide-link>Open check-in →</a></li>
+      <li><b>Read the answer first, then the why.</b><span>Athlete view gives the state and session fit. Technical view exposes dimensions, personal deviations, equations, and confidence.</span><a href="#intelligence" data-guide-link>Open Intelligence →</a></li>
+      <li><b>Use Event Lab only when useful.</b><span>Sprints, hurdles, pace, jumps, throws, and relay tools remain deterministic and transparent where that is the technically correct choice.</span><a href="#eventlab" data-guide-link>Open Event Lab →</a></li>
+      <li><b>Ask Pallas when you need help.</b><span>Pallas works locally with no API key. It can navigate ATHENA, explain saved state history, and compare locally logged running results without inventing missing data.</span><button class="text-btn" type="button" onclick="document.getElementById('pallasToggle')?.click()">Chat with Pallas →</button></li>
+      <li><b>Inspect or run research separately.</b><span>Research Mode shows public-data evidence, failures, reproducibility, N-of-1 tools, and the locked prospective-validation workflow. It does not block everyday athlete use.</span><a href="#research" data-guide-link>Open Research →</a></li>
+    </ol>
+    <div class="guide-note"><b>When will ATHENA say “not enough evidence”?</b><p>Only when a specific research claim or confidence-dependent prediction would be misleading. Everyday tools still work with clear provisional/fallback language.</p></div>
+  </aside>
+
+  <button id="pallasToggle" class="pallas-toggle" type="button" aria-expanded="false" aria-controls="pallasPanel"><span class="pallas-orb">P</span><span><b>Chat with Pallas</b><small>Athena’s close companion and friend</small></span></button>
+  <aside id="pallasPanel" class="pallas-panel" aria-hidden="true" aria-labelledby="pallasTitle">
+    <div class="pallas-head"><div><p class="eyebrow">LOCAL ATHENA GUIDE</p><h2 id="pallasTitle">Pallas</h2><span>Athena’s close companion and friend</span></div><div class="pallas-head-actions"><button id="pallasClear" class="text-btn" type="button">Clear</button><button id="pallasClose" class="icon-btn" type="button" aria-label="Close Pallas">×</button></div></div>
+    <div class="pallas-boundary"><span class="status-dot"></span><b>No API key · local data only</b><small>Pallas answers from ATHENA’s interface and this browser’s saved ATHENA history. It does not diagnose or invent missing measurements.</small></div>
+    <div class="pallas-quick" aria-label="Suggested questions"><button type="button" data-pallas-prompt="Why is my state lower today?">Why today?</button><button type="button" data-pallas-prompt="Am I faster or slower than my usual 100m?">Compare a run</button><button type="button" data-pallas-prompt="Where is Relay Intelligence?">Find a tool</button><button type="button" data-pallas-prompt="How do I use Research Studio?">Research help</button></div>
+    <div id="pallasMessages" class="pallas-messages" aria-live="polite"></div>
+    <form id="pallasForm" class="pallas-form"><label class="sr-only" for="pallasInput">Ask Pallas</label><input id="pallasInput" autocomplete="off" placeholder="Ask about ATHENA or your saved history…"><button class="button primary" type="submit">Ask</button></form>
+    <p class="pallas-fine">Tip: after you save running results, ask “Was my latest 800m faster than my prior average?” You can also type <code>log 100m 12.45</code>.</p>
+  </aside>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
